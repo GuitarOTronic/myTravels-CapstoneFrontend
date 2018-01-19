@@ -1,0 +1,31 @@
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */
+.loginContainer{
+  display: flex;
+  justify-content:center;
+
+}
+form{
+  padding: .5rem .4rem;
+  padding-top: 1rem;
+}
+input{
+  display: block;
+  margin-bottom: 1rem;
+}
+.formContainer{
+
+  padding:0 7rem 1rem 1rem ;
+  border:2px solid #3CB4CB;
+  border-radius: 5px;
+}
+h3{
+  justify-content: center;
+  margin: 0;
+  padding-top: .5rem;
+}

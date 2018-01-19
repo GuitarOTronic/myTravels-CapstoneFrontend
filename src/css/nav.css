@@ -40,7 +40,7 @@ a {
 .banner{
   background-color: #16434B;
 }
-.loginContainer{
+.loginContainerLink{
     display: flex;
     justify-content: flex-end;
 }

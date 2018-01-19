@@ -5,7 +5,7 @@ import '../../css/nav.css'
 const Navigation = () => {
   return (
     <div className='banner'>
-      <div className='loginContainer'><Link to='/login' id='signupLogin'>signup/login</Link></div>
+      <div className='loginContainerLink'><Link to='/login' id='signupLogin'>signup/login</Link></div>
       <nav>
         <div className='navContainer'>
           <div>

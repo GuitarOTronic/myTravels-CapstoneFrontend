@@ -1,0 +1,52 @@
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  padding:0 .5em .5em .5em;
+  background-color: #16434B;
+  color: #fff;
+}
+
+.navContainer{
+    display:block;
+    justify-content: center;
+}
+.navLinks{
+  display: flex;
+  justify-content: space-between;
+}
+h1 {
+  display:block;
+  text-align: center;
+}
+a {
+  padding-right: 1rem;
+  color:#fff;
+  text-decoration: none;
+}
+ a:hover {
+  background-color: #82BF6E;
+  /* padding: 0 .5rem 0 .5rem; */
+  border-radius: 10px;
+}
+.banner{
+  background-color: #16434B;
+}
+.loginContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+ #signupLogin {
+   margin:.3rem;
+   align-self: flex-start;
+   background-color: #16434B;
+
+}

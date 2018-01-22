@@ -19,7 +19,7 @@ input{
   margin-bottom: 1rem;
 }
 .formContainer{
-
+  min-height: 200px;
   padding:0 7rem 1rem 1rem ;
   border:2px solid #3CB4CB;
   border-radius: 5px;
@@ -28,4 +28,10 @@ h3{
   justify-content: center;
   margin: 0;
   padding-top: .5rem;
+}
+
+#singUpLink{
+  color:blue;
+  font-size: .8em;
+
 }

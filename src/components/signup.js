@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom'
 import Navigation from './shared/nav'
 import '../css/login.css'
 
-const Login =({signIn}) => {
+const Signup =({ onSignup }) => {
  return (
    <div className='loginContainer'>
      <div className='formContainer'>
-       <h3>Login</h3>
-       <form onSubmit={ signIn }>
+       <h3>Signup</h3>
+       <form onSubmit={ onSignup }>
+         name:
+         <input className ='inputField' type='text' ></input>
          email:
          <input className='inputField' type='text' ></input>
          password:
          <input className='inputField' type='password' ></input>
-          <input type="submit" value="Login" />
+          <input type="submit" value="Create Account" />
 
         </form>
-        <Link to='/signup' id='singUpLink'>New to myTravels? Sign up here</Link>
+        <Link to='/login' id='singUpLink'>Already have an account? Login here</Link>
      </div>
    </div>
  )
 }
 
-export default Login
+export default Signup

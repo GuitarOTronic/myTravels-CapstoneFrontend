@@ -1,0 +1,26 @@
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */
+.sidebarContainer{
+  align-self: flex-end;
+  min-width: 25%;
+  height: 100vh;
+  background-color: #82BF6E;
+}
+
+.sidebarLinkContainer{
+  padding: 0 1em;
+  font-size: 1rem;
+}
+
+ li{
+   padding:1.5rem 1rem;
+ }
+ li :hover{
+   font-size: 1.2rem;
+   /* padding: .5rem; */
+ }

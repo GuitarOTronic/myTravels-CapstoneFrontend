@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import '../../css/nav.css'
 
-const Navigation = () => {
+const Navigation = ({name, logout}) => {
   return (
     <div className='banner'>
-      <div className='loginContainerLink'><Link to='/login' id='signupLogin'>signup/login</Link></div>
+       <div className='loginContainerLink'>{name ? <Link to='/login' id='signupLogin' onClick={logout}>logout</Link> :  <Link to='/login' id='signupLogin'>signup/login</Link>}</div>
       <nav>
         <div className='navContainer'>
           <div>
@@ -13,7 +13,7 @@ const Navigation = () => {
           </div>
           <div className='navLinks'>
             <Link to ='/' >Home</Link>
-            <Link to ='/#' >myTrips</Link>
+            <Link to ='/mytrips' >myTrips</Link>
             <Link to ='/#' >Current Travelers</Link>
           </div>
       </div>
@@ -22,4 +22,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default withRouter(Navigation)

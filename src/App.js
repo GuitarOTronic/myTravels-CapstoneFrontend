@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import './css/general.css'
 import Home from './components/home'
+import MyTrips from './components/mytrips'
 import Login from './components/login'
+import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
@@ -21,25 +23,55 @@ window.AddTokenToHeader = function () {
 class App extends Component {
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+      error:''
+    }
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
-  async handleSignIn(e)  {
+  async componentDidMount(){
+    //check for local token, verify it, then sign in past users
+    let token = localStorage.getItem('token')
+    window.AddTokenToHeader()
+    await axios.post(`${localhost}/users/pastuser`, token).then(result => {
+      let {name, email, id} = result.data.payload
+
+      this.setState({name, email, id})
+    })
+
+  }
+
+
+  async handleLogout(){
+    localStorage.setItem('token', '')
+    this.setState({name:'', email:'', id:'', loggedIn:false})
+
+  }
+
+  async handleSignIn(e, history) {
     e.preventDefault()
     const email = e.target.querySelectorAll('input')[0].value
     const password = e.target.querySelectorAll('input')[1].value
     const body = { email, password }
     try{
       window.AddTokenToHeader();
-      console.log(body);
-      await axios.post(`${localhost}/users/login`, body).then((token)=> {
-        console.log('got a token: ', token);
-        localStorage.setItem('token', 'bearer '+ token.data)
+      await axios.post(`${localhost}/users/login`, body).then((response)=> {
+        localStorage.setItem('token', 'bearer '+ response.data.token)
+        this.setState({
+            name:response.data.payload.name,
+            email:response.data.payload.email,
+            id: response.data.payload.id,
+            loggedIn:true,
+            error:''
+          })
+          history.push('/mytrips', this.state)
       })
     }catch(error){
-      console.log(error);
+      console.log('Error: ', error);
+      this.setState({error:{signin:error.response.data.message}})
+
     }
   }
 
@@ -50,15 +82,18 @@ class App extends Component {
     const email = e.target.querySelectorAll('input')[1].value
     const password = e.target.querySelectorAll('input')[2].value
     const body = {name, email, password}
-    console.log(body);
-    try{
-      await axios.post(`${localhost}/users/signup`, body).then((token) => {
-        console.log('token => ', token);
-        localStorage.setItem('token', 'bearer ', + token.data )
-      })
-    }catch (error) {
-      console.log('**** Error', error);
-    }
+      await axios.post(`${localhost}/users/signup`, body).then((response) => {
+        localStorage.setItem('token', 'bearer ', + response.data.token )
+        this.setState({
+            name:response.data.payload.name,
+            email:response.data.payload.email,
+            id: response.data.payload.id,
+            error:''
+          })
+      }).catch((error) =>{
+        console.log('Error:', error.response.data.message);
+        this.setState({error:{signup:error.response.data.message}})
+    })
   }
 
 
@@ -67,14 +102,21 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className='main-container'>
-          <Route path = '/' render={() => <Home />}/>
-          <Route path = '/login'
-            render = {() => <Login signIn={ this.handleSignIn }/>}/>
-          <Route path = '/signup'
-            render = {() => <Signup onSignup={ this.handleSignup}/>}/>
 
+      <Router>
+        <div>
+        <Navigation name={this.state.name} logout={this.handleLogout}/>
+        <div className='main-container'>
+          {/* <Route path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/> */}
+          <Route path = '/login'
+            render = {(props) => <Login signIn={ this.handleSignIn } error={ this.state.error } stuff={props}/>}/>
+          <Route path = '/signup'
+            render = {() => <Signup onSignup={ this.handleSignup } error={ this.state.error }/>}/>
+          <Route path = '/mytrips'
+            render = {() => <MyTrips name={this.state.name} state={ this.state }/>}/>
+
+
+        </div>
         </div>
       </Router>
     );

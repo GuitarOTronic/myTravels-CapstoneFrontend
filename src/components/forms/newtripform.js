@@ -2,14 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const NewTripForm = () => {
   return(
-    <div className='loginContainer'>
+    <div className='tripFormContainer'>
       <div className='formContainer'>
-        <h3>Login</h3>
+        <h3>New Trip</h3>
         <form >
-          email:
+          title:
           <input className='inputField' type='text' ></input>
-          password:
-          <input className='inputField' type='password' ></input>
+          where:
+          <input className='inputField' type='text' ></input>
+          currently traveling:
+          <input className='checkbox' type='checkbox' ></input>
          <input type="submit" value="Login"/>
 
          </form>

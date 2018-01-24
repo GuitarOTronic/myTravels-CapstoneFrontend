@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/sidebar.css'
 
-const Sidebar =({showTripForm}) => {
+const Sidebar =({ showTripForm }) => {
+
   return (
     <div className='sidebarContainer'>
       <div className='sidebarLinkContainer'>
-        <li><Link to='#'>Create New Trip</Link></li>
+        <li><Link onClick={ showTripForm } to='#'>Create New Trip</Link></li>
         <hr></hr>
         <li><Link to='#'>Past Trips</Link></li>
         <hr></hr>

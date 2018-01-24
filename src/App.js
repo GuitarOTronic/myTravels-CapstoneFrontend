@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const localhost ='http://localhost:2999'
-const CLOUDINARY_URL='cloudinary:128598374176225:bgzbma00NPUAPWTnS39Pz0jbyt0@mytravels'
+window.CLOUDINARY_URL=' https://api.cloudinary.com/v1_1/mytravels/image/upload' //cloudinary:128598374176225:bgzbma00NPUAPWTnS39Pz0jbyt0@mytravels'
 const cloud_name= 'mytravels'
 window.AddTokenToHeader = function () {
     let token = localStorage.getItem('token')

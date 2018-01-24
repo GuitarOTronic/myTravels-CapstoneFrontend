@@ -51,6 +51,12 @@ li{
   height: 100px; */
 }
 
+.tripFormContainer{
+  align-self: center;
+
+  /* justify-content: center; */
+}
+
 
 /* @media screen and (max-width: 581px){
 

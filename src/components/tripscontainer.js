@@ -1,16 +1,17 @@
 import React from 'react'
-import Post from './post.js'
+import Trip from './trip.js'
+
 const TripsContainer = ({name}) => {
   return(
     <main>
       <div className='nameDiv'>
-        <h2>{ name ? ('Hey, ' + name + '!' ): 'Hey buddy'}</h2>
+        <h2>{ name ? ('Hey, ' + name + '!' ): ''}</h2>
       </div>
       <div>
         <h1>myTrips</h1>
       </div>
-      <div className='postsContainer'>
-          <Post />
+      <div className='tripsContainer'>
+          <Trip/>
       </div>
 
     </main>

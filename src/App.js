@@ -6,11 +6,13 @@ import MyTrips from './components/mytrips'
 import Login from './components/login'
 import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const localhost ='http://localhost:2999'
-
+const CLOUDINARY_URL='cloudinary:128598374176225:bgzbma00NPUAPWTnS39Pz0jbyt0@mytravels'
+const cloud_name= 'mytravels'
 window.AddTokenToHeader = function () {
     let token = localStorage.getItem('token')
     if(token){
@@ -32,6 +34,11 @@ class App extends Component {
   }
 
   async componentDidMount(){
+    window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
+    if(window.$.fn.cloudinary_fileupload !== undefined) {
+      window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+    }
+
     //check for local token, verify it, then sign in past users
     let token = localStorage.getItem('token')
     window.AddTokenToHeader()
@@ -40,6 +47,7 @@ class App extends Component {
 
       this.setState({name, email, id})
     })
+    console.log('state this: ', this.state);
 
   }
 
@@ -107,6 +115,7 @@ class App extends Component {
         <div>
         <Navigation name={this.state.name} logout={this.handleLogout}/>
         <div className='main-container'>
+
           {/* <Route path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/> */}
           <Route path = '/login'
             render = {(props) => <Login signIn={ this.handleSignIn } error={ this.state.error } stuff={props}/>}/>

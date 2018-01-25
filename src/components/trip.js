@@ -8,7 +8,8 @@ const Trip= ({trip}) => {
   console.log(trip);
 
   return(
-    <div className='trip'>
+    <div className='trip' >
+      <h2 className='overlay'>{trip.title}</h2>
       <div className='imgDiv'>
         <Image cloudName="mytravels" publicId="owpsfonr0i72p26wnj5n.jpg" >
           <Transformation width="150" crop="scale" />
@@ -16,14 +17,11 @@ const Trip= ({trip}) => {
         </Image>
       </div>
       <div className='tripTitleContainer'>
-        <h2 className='tripTitle'>`${trip.title}`</h2>
+        <h2 className='tripTitle'>{trip.title}</h2>
         <Link to='#'>See trip</Link>
-        {/* <form> */}
           <input name="file" type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
             data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
 
-
-        {/* </form> */}
       </div>
     </div>
   )

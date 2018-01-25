@@ -24,7 +24,11 @@ class MyTrips extends React.Component{
   getTrips = async () => {
     console.log('getTripsy ', this.props.state.id);
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
-      this.setState({trips:response.data.response})
+      this.setState({
+          showNewTripForm:false,
+          trips:response.data.response,
+        })
+        console.log(this.state);
     }).catch((err)=> {
       console.log(err);
     })

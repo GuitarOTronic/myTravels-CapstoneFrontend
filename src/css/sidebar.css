@@ -18,9 +18,11 @@ dark blueishgreen #16434B
 .sidebarLinkContainer{
   padding: 0 1em;
   font-size: 1rem;
+
 }
 
  li{
+   text-shadow: 5px 3px 6px rgba(0, 0, 0, 0.48);
    padding:1.5rem 1rem;
  }
  li :hover{

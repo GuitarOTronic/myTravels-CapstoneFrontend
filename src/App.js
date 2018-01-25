@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const localhost ='http://localhost:2999'
-window.CLOUDINARY_URL=' https://api.cloudinary.com/v1_1/mytravels/image/upload' //cloudinary:128598374176225:bgzbma00NPUAPWTnS39Pz0jbyt0@mytravels'
+window.CLOUDINARY_URL=' https://api.cloudinary.com/v1_1/mytravels/image/upload'
 const cloud_name= 'mytravels'
 window.AddTokenToHeader = function () {
     let token = localStorage.getItem('token')
@@ -31,6 +31,7 @@ class App extends Component {
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
+    this.handleCreateNewTrip = this.handleCreateNewTrip.bind(this)
   }
 
   async componentDidMount(){
@@ -38,7 +39,6 @@ class App extends Component {
     if(window.$.fn.cloudinary_fileupload !== undefined) {
       window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
     }
-
     //check for local token, verify it, then sign in past users
     let token = localStorage.getItem('token')
     window.AddTokenToHeader()
@@ -47,10 +47,17 @@ class App extends Component {
 
       this.setState({name, email, id})
     })
-    console.log('state this: ', this.state);
-
   }
 
+  async handleCreateNewTrip(title, country, region, userId, history){
+    console.log('handle createNewTrip =>', history);
+    const user_id = this.state.id
+    const body = {title, country, region, user_id}
+    await axios.post(`${localhost}/trips`, body).then(response => {
+      console.log('handled createNewTrip => ', response);
+      // this.history.push('/mytrips', this.state)
+    })
+  }
 
   async handleLogout(){
     localStorage.setItem('token', '')
@@ -118,13 +125,20 @@ class App extends Component {
 
           {/* <Route path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/> */}
           <Route path = '/login'
-            render = {(props) => <Login signIn={ this.handleSignIn } error={ this.state.error } stuff={props}/>}/>
+            render = {(props) => <Login
+              signIn={ this.handleSignIn }
+              error={ this.state.error }
+              props={props}/>}
+            />
           <Route path = '/signup'
             render = {() => <Signup onSignup={ this.handleSignup } error={ this.state.error }/>}/>
           <Route path = '/mytrips'
-            render = {() => <MyTrips name={this.state.name} state={ this.state }/>}/>
-
-
+            render = {(props) => <MyTrips
+              createNewTrip={this.handleCreateNewTrip}
+              props={props}
+              name={this.state.name}
+              state={ this.state }/>}
+            />
         </div>
         </div>
       </Router>

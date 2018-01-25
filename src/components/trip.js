@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import $ from 'jquery';
-const Trip= () => {
-  // window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true})
 
+const Trip= ({trip}) => {
+  // window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true})
+  console.log(trip);
 
   return(
     <div className='trip'>
@@ -15,7 +16,7 @@ const Trip= () => {
         </Image>
       </div>
       <div className='tripTitleContainer'>
-        <h2 className='tripTitle'>Some sexy header</h2>
+        <h2 className='tripTitle'>`${trip.title}`</h2>
         <Link to='#'>See trip</Link>
         {/* <form> */}
           <input name="file" type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"

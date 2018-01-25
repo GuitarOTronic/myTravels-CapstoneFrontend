@@ -30,6 +30,16 @@ li{
 
 }
 
+.formContainer{
+  margin-top: 2rem;
+  min-height: 200px;
+  padding:0 7rem 1rem 1rem ;
+  border:2px solid #3CB4CB;
+  border-radius: 5px;
+  align-self: center;
+
+}
+
 .tripsContainer{
   display: flex;
   justify-content: center;
@@ -53,8 +63,10 @@ li{
 
 .tripFormContainer{
   align-self: center;
-
-  /* justify-content: center; */
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 

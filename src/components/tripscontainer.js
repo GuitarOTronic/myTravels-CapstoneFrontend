@@ -1,7 +1,7 @@
 import React from 'react'
 import Trip from './trip.js'
 
-const TripsContainer = ({name}) => {
+const TripsContainer = ({trips, name}) => {
   return(
     <main>
       <div className='nameDiv'>
@@ -11,7 +11,7 @@ const TripsContainer = ({name}) => {
         <h1>myTrips</h1>
       </div>
       <div className='tripsContainer'>
-          <Trip/>
+          {trips.map((trip, i) => <Trip  trip={trip} key={i}/>)}
       </div>
 
     </main>

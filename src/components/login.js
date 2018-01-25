@@ -3,14 +3,12 @@ import { Link, withRouter } from 'react-router-dom'
 // import Navigation from './shared/nav'
 import '../css/login.css'
 
-const Login =({ error, signIn, ...stuff }) => {
-  // console.log('locations => ', this.props.location);
-  console.log(stuff.history);
+const Login =({ error, signIn, ...props }) => {
  return (
    <div className='loginContainer'>
-     <div className='formContainer'>
+     <div className='loginFormContainer'>
        <h3>Login</h3>
-       <form onSubmit={ (e) => signIn(e, stuff.history) }>
+       <form onSubmit={ (e) => signIn(e, props.history) }>
          email:
          <input className='inputField' type='text' ></input>
          password:

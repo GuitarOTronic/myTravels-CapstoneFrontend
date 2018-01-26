@@ -4,3 +4,17 @@
   height: 100vh;
 
 }
+/* @media screen and (max-width: 780px) {
+  .tripTitle {
+    font-size: 1rem;
+  }
+  .trip{
+    flex-direction: column;
+  }
+  .allTripsContainer {
+    padding:0;
+  }
+  .imgDiv{
+    padding:0;
+  }
+} */

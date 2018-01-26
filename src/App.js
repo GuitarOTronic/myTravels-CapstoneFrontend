@@ -35,10 +35,7 @@ class App extends Component {
   }
 
   async componentDidMount(){
-    window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
-    if(window.$.fn.cloudinary_fileupload !== undefined) {
-      window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-    }
+
     //check for local token, verify it, then sign in past users
     let token = localStorage.getItem('token')
     window.AddTokenToHeader()

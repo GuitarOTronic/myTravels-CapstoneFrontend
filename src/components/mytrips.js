@@ -12,7 +12,11 @@ class MyTrips extends React.Component{
     super(props)
     this.state={
       showNewTripForm:false,
-      trips:[]
+      trips:[],
+      tripId:'',
+      tripName:'',
+      tripEntries:[],
+      photoId:[]
     }
     this.toggleTripForm=this.toggleTripForm.bind()
   }
@@ -20,6 +24,25 @@ class MyTrips extends React.Component{
   async componentDidMount(){
     this.getTrips()
   }
+
+
+  addPhoto = async ( public_id, url )=>{
+    let body = {
+      public_id: public_id,
+      trip_id:this.state.tripId,
+      user_id:this.props.state.id,
+      url:url
+    }
+
+    await axios.post(`${localhost}/pics`, body).then(response => {
+      console.log(response);
+
+    }).catch((err) => {
+      console.error();
+    })
+    this.setState({ photoId: [...this.state.photoId, public_id] })
+  }
+
   //get trips then store them in state
   getTrips = async () => {
     console.log('getTripsy ', this.props.state.id);
@@ -31,6 +54,22 @@ class MyTrips extends React.Component{
         console.log(this.state);
     }).catch((err)=> {
       console.log(err);
+    })
+  }
+
+  setTripDetails = async ( id, name ) => {
+    await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
+      let tripEntries = response.data.response
+      console.log('seeTripDeets baby: ', response.data.response);
+      this.setState({
+        tripId:id,
+        tripName:name,
+        tripEntries: tripEntries,
+        // memory:memory,
+        // public_id:public_id
+      })
+    }).catch((err)=> {
+      console.error()
     })
   }
 
@@ -52,11 +91,22 @@ class MyTrips extends React.Component{
         { this.state.showNewTripForm ?
           <NewTripForm
             createNewTrip={ this.props.createNewTrip }
-            toggleTripForm={ this.toggleTripForm }
             getTrips={ this.getTrips }
             props={ this.props }
+            toggleTripForm={ this.toggleTripForm }
           /> :
-          <TripsContainer trips={ this.state.trips} name ={ this.props.name } id ={ this.props.state.id }  />
+          <TripsContainer
+            addPhoto={ this.addPhoto }
+            id ={ this.props.state.id }
+            memory= { this.state.memory }
+            name ={ this.props.name }
+            public_id={ this.state.public_id }
+            setTripDetails={ this.setTripDetails }
+            tripId={ this.state.tripId }
+            tripName={ this.state.tripName }
+            trips={ this.state.trips}
+            tripEntries={ this.state.tripEntries }
+          />
         }
         <Sidebar showTripForm={ this.toggleTripForm }/>
       </div>

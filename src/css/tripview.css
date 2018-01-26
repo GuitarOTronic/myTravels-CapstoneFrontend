@@ -1,0 +1,19 @@
+.tripLink {
+  padding-right: 1rem;
+  color:black;
+  text-decoration: none;
+}
+ .tripLink:hover {
+  background-color: ;
+  /* padding: 0 .5rem 0 .5rem; */
+  border-radius: 10px;
+}
+
+.trip:hover{
+  opacity: 0.5;
+
+}
+
+.trip:active{
+  opacity: 100;
+}

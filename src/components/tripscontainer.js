@@ -3,15 +3,16 @@ import Trip from './trip.js'
 import TripEntries from './tripentries.js'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import $ from 'jquery'
-const TripsContainer = ({trips,  name, setTripDetails, tripId, tripName, addPhoto, tripEntries}) => {
+const TripsContainer = ({trips, memory, name, setTripDetails, tripId, tripName, addPhoto, tripEntries, photoId}) => {
 // for TripsContainer props   ->  public_id,
-
+// photoId={ this.state.photoId }
   console.log('tripEntry>>>>>>>>>>>', tripEntries);
+  console.log('photoId>>>>>>>>>>>', photoId);
+  console.log('memory>>>>>>>>>>>', memory);
   //cloudinary config for uploads
   window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
   if(window.$.fn.cloudinary_fileupload !== undefined) {
     window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-        console.log(data, 'ids>>>>>>>>>> --  ', data.result.public_id,);
         addPhoto(data.result.public_id, data.result.url)
       })
 //     $('.thumbnails').append($.cloudinary.image(data.result.public_id,
@@ -36,7 +37,7 @@ const TripsContainer = ({trips,  name, setTripDetails, tripId, tripName, addPhot
       </div>
       <div className='allTripsContainer'>
         {tripId  ?
-          tripEntries.map((tripEntry, i) => <TripEntries  public_id={ tripEntry.public_id } memory={ tripEntry.memory } tripEntries= { tripEntries } key={ i }/>) :
+          tripEntries.map((tripEntry, i) => <TripEntries  id={ tripEntry.id } date={tripEntry.created_at} memory={ tripEntry.memory } photoId={photoId} title= { tripEntry.title } key={ i }/>) :
           trips.map((trip, i) => <Trip  setTripDetails={ setTripDetails } trip={ trip } key={ i }/>)
         }
       </div>

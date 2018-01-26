@@ -59,13 +59,17 @@ class MyTrips extends React.Component{
 
   setTripDetails = async ( id, name ) => {
     await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
-      let tripEntries = response.data.response
-      console.log('seeTripDeets baby: ', response.data.response);
+      console.log('spunk   ',response.data);
+      let memory = response.data.tripEntries[0].memory
+      let picIds = response.data.ids
+      let tripEntries = response.data.tripEntries
+      console.log('setTrip Deets +> ', response);
       this.setState({
         tripId:id,
         tripName:name,
-        tripEntries: tripEntries,
-        // memory:memory,
+        photoId:picIds,
+        memory:memory,
+        tripEntries:tripEntries
         // public_id:public_id
       })
     }).catch((err)=> {
@@ -101,6 +105,7 @@ class MyTrips extends React.Component{
             memory= { this.state.memory }
             name ={ this.props.name }
             public_id={ this.state.public_id }
+            photoId={ this.state.photoId }
             setTripDetails={ this.setTripDetails }
             tripId={ this.state.tripId }
             tripName={ this.state.tripName }

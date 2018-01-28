@@ -7,7 +7,10 @@ import TripEntrySidebar from './tripentrysidebar.js'
 import NewTripForm from './forms/newtripform.js'
 import NewEntryForm from './forms/newentryform.js'
 import TripsContainer from './tripscontainer.js'
+import moment from 'moment'
+import DatePicker from 'react-datepicker';
 import ReactModal from 'react-modal';
+import 'react-datepicker/dist/react-datepicker.css';
 const localhost ='http://localhost:2999'
 
 // ReactModal.setAppElement('#main');
@@ -21,7 +24,8 @@ class MyTrips extends React.Component{
       tripId:'',
       tripName:'',
       tripEntries:[],
-      photoId:[]
+      photoId:[],
+      startDate: moment()
     }
     this.toggleTripForm=this.toggleTripForm.bind()
     this.toggleModal =this.toggleModal.bind(this)
@@ -32,6 +36,13 @@ class MyTrips extends React.Component{
     this.getTrips()
     // Modal.setAppElement(<TripsContainer>);
     ReactModal.setAppElement('#main');
+    window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
+    if(window.$.fn.cloudinary_fileupload !== undefined) {
+      window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
+          console.log('data ', data);
+          this.addPhoto(data.result.public_id, data.result.url)
+        })
+      }
   }
 
   addPhoto = async ( public_id, url )=>{
@@ -50,10 +61,13 @@ class MyTrips extends React.Component{
   }
 
   closeModal = () => {
-    console.log('fuckers ');
     this.setState({modalIsOpen:false})
   }
 
+  createMemory = (e) =>{
+    e.preventDefault()
+    console.log('hey fucker');
+  }
   //get trips then store them in state
   getTrips = async () => {
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
@@ -65,16 +79,11 @@ class MyTrips extends React.Component{
       console.log(err);
     })
   }
-
-  toggleModal = ()=> {
-    if(this.state.modalIsOpen) {
-      console.log('if toggled');
-      this.setState({modalIsOpen:false})
-    }else{
-      console.log('else toggles');
-      this.setState({modalIsOpen:true})
+  handleChange= (date) =>{
+      this.setState({
+        startDate: date
+      });
     }
-  }
 
   setTripDetails = async ( id, name ) => {
     await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
@@ -93,6 +102,15 @@ class MyTrips extends React.Component{
     })
   }
 
+  toggleModal = ()=> {
+    if(this.state.modalIsOpen) {
+      console.log('if toggled');
+      this.setState({modalIsOpen:false})
+    }else{
+      console.log('else toggles');
+      this.setState({modalIsOpen:true})
+    }
+  }
   //toggle showNewTripForm
   toggleTripForm = () => {
     if(this.state.showNewTripForm){
@@ -170,17 +188,19 @@ class MyTrips extends React.Component{
                     <h2>New Memory</h2>
                     <button className='modalX' onClick={this.closeModal}>X</button>
                 </div>
-                <form className='modalForm' >
+                <form className='modalForm' onSubmit={ this.createMemory}>
                 <div className='modalFormContent' >
                   Title: <input className='memoryTitle'></input>
-                  Date: <input></input>
-                  Memories: <textarea type='text'></textarea>
-                  <label> Make this memory public?
+                  Date:
+                  <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
+                  Memories: <textarea type='text' placeholder='Tell us about what you did today'></textarea>
+                  <label> Make memory and photos public?
                     <input type='checkbox'></input>
                   </label>
-              <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
-                data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
+                <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
+                  data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
                 </div>
+                <input type="submit" value="Create Memory"/>
               </form>
             </div>
           </ReactModal>

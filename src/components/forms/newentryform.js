@@ -1,9 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+// import { Link } from 'react-router-dom'
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import '../../css/mytrips.css'
 
-class NewTripForm extends React.Component{
+class NewEntryForm extends React.Component{
   constructor(props){
     super(props)
     this.state={
@@ -34,7 +35,7 @@ class NewTripForm extends React.Component{
     return(
       <div className='tripFormContainer'>
         <div className='formContainer'>
-          <h3>Create New Trip</h3>
+          <h3>Create New Memory</h3>
           <form onSubmit={ this.createNewTrip }>
             title:
             <input className='inputField' type='text' ></input>
@@ -61,4 +62,4 @@ class NewTripForm extends React.Component{
 
 }
 
-export default withRouter(NewTripForm)
+export default withRouter(NewEntryForm)

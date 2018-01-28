@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import '../../css/nav.css'
 
 const Navigation = ({name, logout}) => {

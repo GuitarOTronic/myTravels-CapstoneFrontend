@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import './css/general.css'
-import Home from './components/home'
 import MyTrips from './components/mytrips'
 import Login from './components/login'
 import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
 
 const localhost ='http://localhost:2999'
@@ -118,7 +117,7 @@ class App extends Component {
       <Router>
         <div>
         <Navigation name={this.state.name} logout={this.handleLogout}/>
-        <div className='main-container'>
+        <div className='main-container' id='main'>
 
           {/* <Route path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/> */}
           <Route path = '/login'

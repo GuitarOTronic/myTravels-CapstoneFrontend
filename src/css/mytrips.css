@@ -19,7 +19,55 @@ li{
 .nameDiv{
   padding-left: 1rem;
 }
+/* .entryModal{
+  width:50vw;
+} */
 
+
+.entryFormModal{
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+.modalX{
+  align-self: flex-start;
+}
+.modalHeader{
+  display: flex;
+  justify-content: space-between;
+  background-color: #16434B;
+  margin:0;
+  color:#fff;
+}
+.modalHeader h2{
+  padding-left: 2rem;
+}
+.modalForm{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+/* .modalForm h2{
+  margin:0;
+  color:#fff;
+} */
+.modalFormContent{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-content: center;
+}
+.modalFormContent input{
+  width:180px;
+}
+
+.modalFormContent label {
+  display:flex;
+}
+
+.modalFormContent textarea{
+  height: 80px;
+}
 .trip{
   display: flex;
   border: 2px solid black;

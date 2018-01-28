@@ -3,15 +3,20 @@ import { Redirect } from 'react-router-dom'
 import '../css/mytrips.css'
 import axios from 'axios'
 import Sidebar from './sidebar.js'
+import TripEntrySidebar from './tripentrysidebar.js'
 import NewTripForm from './forms/newtripform.js'
+import NewEntryForm from './forms/newentryform.js'
 import TripsContainer from './tripscontainer.js'
+import ReactModal from 'react-modal';
 const localhost ='http://localhost:2999'
 
+// ReactModal.setAppElement('#main');
 class MyTrips extends React.Component{
   constructor(props){
     super(props)
     this.state={
       showNewTripForm:false,
+      modalIsOpen:false,
       trips:[],
       tripId:'',
       tripName:'',
@@ -19,12 +24,15 @@ class MyTrips extends React.Component{
       photoId:[]
     }
     this.toggleTripForm=this.toggleTripForm.bind()
+    this.toggleModal =this.toggleModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   async componentDidMount(){
     this.getTrips()
+    // Modal.setAppElement(<TripsContainer>);
+    ReactModal.setAppElement('#main');
   }
-
 
   addPhoto = async ( public_id, url )=>{
     let body = {
@@ -33,9 +41,7 @@ class MyTrips extends React.Component{
       user_id:this.props.state.id,
       url:url
     }
-
     await axios.post(`${localhost}/pics`, body).then(response => {
-      console.log(response);
 
     }).catch((err) => {
       console.error();
@@ -43,34 +49,44 @@ class MyTrips extends React.Component{
     this.setState({ photoId: [...this.state.photoId, public_id] })
   }
 
+  closeModal = () => {
+    console.log('fuckers ');
+    this.setState({modalIsOpen:false})
+  }
+
   //get trips then store them in state
   getTrips = async () => {
-    console.log('getTripsy ', this.props.state.id);
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
       this.setState({
           showNewTripForm:false,
           trips:response.data.response,
         })
-        console.log(this.state);
     }).catch((err)=> {
       console.log(err);
     })
   }
 
+  toggleModal = ()=> {
+    if(this.state.modalIsOpen) {
+      console.log('if toggled');
+      this.setState({modalIsOpen:false})
+    }else{
+      console.log('else toggles');
+      this.setState({modalIsOpen:true})
+    }
+  }
+
   setTripDetails = async ( id, name ) => {
     await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
-      console.log('spunk   ',response.data);
       let memory = response.data.tripEntries[0].memory
       let picIds = response.data.ids
       let tripEntries = response.data.tripEntries
-      console.log('setTrip Deets +> ', response);
       this.setState({
         tripId:id,
         tripName:name,
         photoId:picIds,
         memory:memory,
         tripEntries:tripEntries
-        // public_id:public_id
       })
     }).catch((err)=> {
       console.error()
@@ -86,38 +102,90 @@ class MyTrips extends React.Component{
     }
   }
 
-
   render(){
     console.log('MyTrips\' state: ', this.state.trips);
     return(
-      <div className='myTripsContainer'>
+      <div className='myTripsContainer' >
         {!this.props.state.id ? <Redirect to={'/login'}/> :''}
         { this.state.showNewTripForm ?
-          <NewTripForm
+            <NewTripForm
             createNewTrip={ this.props.createNewTrip }
             getTrips={ this.getTrips }
             props={ this.props }
             toggleTripForm={ this.toggleTripForm }
           /> :
-          <TripsContainer
-            addPhoto={ this.addPhoto }
-            id ={ this.props.state.id }
-            memory= { this.state.memory }
-            name ={ this.props.name }
-            public_id={ this.state.public_id }
-            photoId={ this.state.photoId }
-            setTripDetails={ this.setTripDetails }
-            tripId={ this.state.tripId }
-            tripName={ this.state.tripName }
-            trips={ this.state.trips}
-            tripEntries={ this.state.tripEntries }
-          />
+
+            <TripsContainer
+              toggleModal={ this.state.toggleModal }
+              addPhoto={ this.addPhoto }
+              id ={ this.props.state.id }
+              memory= { this.state.memory }
+              name ={ this.props.name }
+              public_id={ this.state.public_id }
+              photoId={ this.state.photoId }
+              setTripDetails={ this.setTripDetails }
+              tripId={ this.state.tripId }
+              tripName={ this.state.tripName }
+              trips={ this.state.trips}
+              tripEntries={ this.state.tripEntries }
+            />
+
         }
-        <Sidebar showTripForm={ this.toggleTripForm }/>
+        { this.state.tripId ?
+          <TripEntrySidebar showEntryForm={this.toggleModal}/> :
+          <Sidebar showTripForm={ this.toggleTripForm }/>
+        }
+
+          <ReactModal
+            isOpen={this.state.modalIsOpen}
+            contentLabel="Modal"
+            onRequestClose={this.closeModal}
+            shouldCloseOnOverlayClick={true}
+            // appElement={el}
+             ariaHideApp={true}
+             style={{
+               overlay:{
+                 width:'100vw'
+               },
+               content:{
+                position:'absolute',
+                width:'50vw',
+                top: '20%',
+                left: '25%',
+                right: '25%',
+                bottom: '20%',
+                border: '1px solid #E94858',
+                background: '#82BF6E',
+                overflo: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                borderRadius: '4px',
+                outline: 'none',
+                padding: '0px'
+               }
+             }}
+            >
+            <div className = 'entryFormModal'>
+
+                <div className='modalHeader'>
+                    <h2>New Memory</h2>
+                    <button className='modalX' onClick={this.closeModal}>X</button>
+                </div>
+                <form className='modalForm' >
+                <div className='modalFormContent' >
+                  Title: <input className='memoryTitle'></input>
+                  Date: <input></input>
+                  Memories: <textarea type='text'></textarea>
+                  <label> Make this memory public?
+                    <input type='checkbox'></input>
+                  </label>
+              <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
+                data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
+                </div>
+              </form>
+            </div>
+          </ReactModal>
       </div>
     )
   }
-  // this.state.trips.map((trip, i) =>
-  // {this.state.steps.map((step, i) => <HistoryItem key={i} step={step}/>)}
 }
 export default MyTrips

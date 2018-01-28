@@ -20,6 +20,13 @@ window.AddTokenToHeader = function () {
       axios.defaults.headers.common['auth'] = null;
   }
 }
+window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
+if(window.$.fn.cloudinary_fileupload !== undefined) {
+  window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
+      console.log('data ', data);
+      this.props.addPhoto(data.result.public_id, data.result.url)
+    })
+  }
 
 class App extends Component {
   constructor(props){

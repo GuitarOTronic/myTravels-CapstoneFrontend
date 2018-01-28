@@ -34,8 +34,8 @@ class TripsContainer extends React.Component {
   render(){
     return(
       <main>
-        {/* <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
-          data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input> */}
+        <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
+          data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
 
         <div className='nameDiv'>
           <h2>{ this.props.name ? ('Hey, ' + this.props.name + '!' ): ''}</h2>

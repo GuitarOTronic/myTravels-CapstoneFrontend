@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const TripEntries = ({ memory, photoId, title, id, date }) => {
   moment().format("MMM Do YY");
-  let createdAt = moment(date).format( "MMMM YYYY")
+  let createdAt = moment(date).format( "MMMM Do YYYY")
 return(
   <div className='memoryContainer'>
     <div>

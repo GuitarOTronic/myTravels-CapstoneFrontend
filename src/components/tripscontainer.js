@@ -35,7 +35,7 @@ class TripsContainer extends React.Component {
         </div>
         <div className='allTripsContainer'>
           {this.props.tripId  ?
-            this.props.tripEntries.map((tripEntry, i) => <TripEntries  id={ tripEntry.id } date={tripEntry.created_at} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
+            this.props.tripEntries.map((tripEntry, i) => <TripEntries  id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
             this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } trip={ trip } key={ i }/>)
           }
         </div>

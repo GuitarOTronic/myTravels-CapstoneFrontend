@@ -11,18 +11,27 @@ import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 import moment from 'moment'
 import DatePicker from 'react-datepicker';
 import ReactModal from 'react-modal';
+import EntryReactModal from './entryreactmodal.js'
 import 'react-datepicker/dist/react-datepicker.css';
 const localhost ='http://localhost:2999'
 
-let cloudinary: { api_key: "128598374176225", cloud_name: "mytravels", unsigned_upload_preset: "ncc1xgsl" }
+// let cloudinary: { api_key: "128598374176225", cloud_name: "mytravels", unsigned_upload_preset: "ncc1xgsl" }
 window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
-if(window.$.fn.cloudinary_fileupload !== undefined) {
-  window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-      console.log('data ', data);
-      this.addPhoto(data.result.public_id, data.result.url)
-    })
-  }
 
+
+// if(window.$.fn.cloudinary_fileupload !== undefined) {
+//   window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
+//       console.log('data ', data);
+//       this.addPhoto(data.result.public_id, data.result.url)
+//     })
+//   }
+// function uploady(){
+//   console.log(  window.$("input.cloudinary-fileupload[type=file]"))
+//   window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
+//       console.log('data ', data, );
+//       // this.addPhoto(data.result.public_id, data.result.url)
+//     })
+// }
 
 class MyTrips extends React.Component{
   constructor(props){
@@ -45,23 +54,15 @@ class MyTrips extends React.Component{
 
   async componentDidMount(){
     this.getTrips()
-    // Modal.setAppElement(<TripsContainer>);
-    ReactModal.setAppElement('#main');
-
-    window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
-    if(window.$.fn.cloudinary_fileupload !== undefined) {
-      window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-          console.log('data ', data.result.public_id, data.result.url);
-          // this.state.addPhoto(data.result.public_id, data.result.url)
-        })
-      }
   }
 
   addPhoto = async ( public_id, url ) => {
+    console.log('addPhoto',this.state.tripEntryId);
     let body = {
       public_id: public_id,
       trip_id:this.state.tripId,
       user_id:this.props.state.id,
+      trip_entry_id:this.state.tripEntryId,
       url:url
     }
     await axios.post(`${localhost}/pics`, body).then(response => {
@@ -76,12 +77,26 @@ class MyTrips extends React.Component{
     this.setState({modalIsOpen:false})
   }
 
-  createMemory = (e) =>{
+  createMemory = async (e) =>{
     e.preventDefault()
-    console.log('hey fucker', e);
+    let title = e.target.querySelectorAll('input')[0].value
+    let date = e.target.querySelectorAll('input')[1].value
+    let publicMem = e.target.querySelectorAll('input')[3].value
+    let memory = e.target.querySelectorAll('textarea')[0].value
+    let trip_entry_id = window.tripEntryId
+    const body ={ title, date, memory, trip_entry_id}
+    console.log('hey gurl', body);
+    axios.patch(`${localhost}/tripEntries`, body).then(response => {
+      console.log('created memory ', response, 'tripName', this.state.tripName);
+      this.closeModal()
+      // this.setState({modalIsOpen:false})
+      this.setTripDetails(this.state.tripId, this.state.tripName)
+    })
+
   }
   //get trips then store them in state
   getTrips = async () => {
+    console.log('getTrips****');
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
       this.setState({
           showNewTripForm:false,
@@ -97,11 +112,17 @@ class MyTrips extends React.Component{
       });
     }
 
+  refreshTripEntries(){
+    // this.setTripDetails()
+  }
+
   setTripDetails = async ( id, name ) => {
+    console.log('setTripDetails ****');
     await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
       let memory = response.data.tripEntries[0].memory
       let picIds = response.data.ids
       let tripEntries = response.data.tripEntries
+      console.log('setTripDetails tripentries =>>>>', tripEntries);
       this.setState({
         tripId:id,
         tripName:name,
@@ -110,17 +131,24 @@ class MyTrips extends React.Component{
         tripEntries:tripEntries
       })
     }).catch((err)=> {
-      console.error()
+      console.log(err)
     })
   }
 
-  toggleModal = ()=> {
+  toggleModal = async ()=> {
     if(this.state.modalIsOpen) {
-      console.log('if toggled');
       this.setState({modalIsOpen:false})
     }else{
-      console.log('else toggles');
       this.setState({modalIsOpen:true})
+      let user_id = this.props.state.id
+      let trip_id = this.state.tripId
+      let body = {user_id, trip_id, title:'holder', memory:'holder'}
+      await axios.post(`${localhost}/tripEntries/getNewTripEntryId/${trip_id}`, body).then(response => {
+        console.log('toggleModal: ', response.data.tripEntryId);
+        window.tripEntryId=response.data.tripEntryId
+        // this.setState({tripEntryId:response.data.tripEntryId})
+      })
+
     }
   }
   //toggle showNewTripForm
@@ -132,16 +160,11 @@ class MyTrips extends React.Component{
     }
   }
 
-  uploadWidget=()=> {
-        cloudinary.openUploadWidget({ cloud_name: 'myTravels', upload_preset: 'ncc1xgsl'},
-            function(error, result) {
-                console.log(result);
-            });
-    }
   render(){
-    console.log('MyTrips\' state: ', this.state.trips);
+
     return(
       <div className='myTripsContainer' >
+
         {!this.props.state.id ? <Redirect to={'/login'}/> :''}
         { this.state.showNewTripForm ?
             <NewTripForm
@@ -152,18 +175,26 @@ class MyTrips extends React.Component{
           /> :
 
             <TripsContainer
-              toggleModal={ this.state.toggleModal }
               addPhoto={ this.addPhoto }
+              createMemory={ this.createMemory }
+              handleChange={ this.handleChange}
               id ={ this.props.state.id }
+              isOpen={ this.state.isOpen }
               memory= { this.state.memory }
               name ={ this.props.name }
+              onRequestClose={this.closeModal}
               public_id={ this.state.public_id }
               photoId={ this.state.photoId }
+              refreshTripEntries={this.refreshTripEntries}
               setTripDetails={ this.setTripDetails }
+              startDate={this.state.startDate}
+              toggleModal={ this.state.toggleModal }
               tripId={ this.state.tripId }
               tripName={ this.state.tripName }
               trips={ this.state.trips}
               tripEntries={ this.state.tripEntries }
+              tripEntryId={ this.state.tripEntryId }
+              userId={this.props.state.id}
             />
 
         }
@@ -171,57 +202,20 @@ class MyTrips extends React.Component{
           <TripEntrySidebar showEntryForm={this.toggleModal}/> :
           <Sidebar showTripForm={ this.toggleTripForm }/>
         }
-
-          <ReactModal
+        <EntryReactModal
+            refreshTripEntries={this.refreshTripEntries}
+            tripEntryId={ this.state.tripEntryId }
+            tripId={ this.state.tripId}
+            userId={this.props.state.id}
+            createMemory={ this.createMemory }
+            handleChange={ this.handleChange}
+            startDate={this.state.startDate}
             isOpen={this.state.modalIsOpen}
-            contentLabel="Modal"
             onRequestClose={this.closeModal}
-            shouldCloseOnOverlayClick={true}
-            // appElement={el}
-             ariaHideApp={true}
-             style={{
-               overlay:{
-                 width:'100vw'
-               },
-               content:{
-                position:'absolute',
-                width:'50vw',
-                top: '20%',
-                left: '25%',
-                right: '25%',
-                bottom: '20%',
-                border: '1px solid #E94858',
-                background: '#82BF6E',
-                overflo: 'auto',
-                WebkitOverflowScrolling: 'touch',
-                borderRadius: '4px',
-                outline: 'none',
-                padding: '0px'
-               }
-             }}
-            >
-            <div className = 'entryFormModal'>
+            addPhoto={ this.addPhoto }/>
 
-                <div className='modalHeader'>
-                    <h2>New Memory</h2>
-                    <button className='modalX' onClick={this.closeModal}>X</button>
-                </div>
-                <form className='modalForm' onSubmit={ this.createMemory}>
-                <div className='modalFormContent' >
-                  Title: <input className='memoryTitle'></input>
-                  Date:
-                  <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
-                  Memories: <textarea type='text' placeholder='Tell us about what you did today'></textarea>
-                  <label> Make memory and photos public?
-                    <input type='checkbox'></input>
-                  </label>
-                <input name="file" multiple='true' type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
-                  data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
-                </div>
-                <input type="submit" value="Create Memory"  className="upload-button" onSubmit={this.uploadWidget.bind(this)} />
-              </form>
-            </div>
-          </ReactModal>
+
+
       </div>
     )
   }

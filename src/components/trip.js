@@ -8,7 +8,6 @@ import '../css/tripview.css'
 const Trip= ({trip, setTripDetails}) => {
 
   function goToTripEntries(e){
-    console.log(trip.id);
     setTripDetails(trip.id, trip.title)
   }
 
@@ -23,9 +22,9 @@ const Trip= ({trip, setTripDetails}) => {
         </div>
         <div className='tripTitleContainer'>
           <h2 className='tripTitle'>{ trip.title }</h2>
-          <Link to='#'>See trip</Link>
-            <input name="file" type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
-              data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input>
+          {/* <Link to='#'>See trip</Link> */}
+            {/* <input name="file" type="file" className="cloudinary-fileupload" data-cloudinary-field="wompwomp"
+              data-form-data="{&quot;upload_preset&quot;: &quot;ncc1xgsl&quot;}"></input> */}
 
         </div>
       </div>

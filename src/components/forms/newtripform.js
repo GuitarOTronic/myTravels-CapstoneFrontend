@@ -33,6 +33,7 @@ class NewTripForm extends React.Component{
     {console.log('render ',this.state.country);}
     return(
       <div className='tripFormContainer'>
+        <button className='modalX' onClick={this.props.toggleTripForm}>X</button>
         <div className='formContainer'>
           <h3>Create New Trip</h3>
           <form onSubmit={ this.createNewTrip }>

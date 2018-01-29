@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "blueimp-file-upload": "^9.20.0",
+    "cloudinary-core": "^2.4.0",
     "cloudinary-jquery-file-upload": "^2.4.0",
     "cloudinary-react": "^1.0.6",
     "jquery": "^3.3.1",

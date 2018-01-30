@@ -40,7 +40,7 @@ class MyTrips extends React.Component{
       showNewTripForm:false,
       modalIsOpen:false,
       trips:[],
-      tripId:'',
+      tripId:this.props.tripId,
       tripName:'',
       tripEntries:[],
       photoId:[],
@@ -117,19 +117,22 @@ class MyTrips extends React.Component{
   }
 
   setTripDetails = async ( id, name ) => {
-    console.log('setTripDetails ****');
-    await axios.get(`${localhost}/tripEntries/${id}`).then(response => {
+    console.log('setTripDetails ****', this.props.tripId);
+    await axios.get(`${localhost}/tripEntries/${id||this.props.tripId}`).then(response => {
       let memory = response.data.tripEntries[0].memory
       let picIds = response.data.ids
       let tripEntries = response.data.tripEntries
       console.log('setTripDetails tripentries =>>>>', tripEntries);
+
+      this.props.setTripId(id||this.props.tripId)
       this.setState({
-        tripId:id,
+        // tripId:id,
         tripName:name,
         photoId:picIds,
         memory:memory,
         tripEntries:tripEntries
       })
+
     }).catch((err)=> {
       console.log(err)
     })
@@ -141,7 +144,7 @@ class MyTrips extends React.Component{
     }else{
       this.setState({modalIsOpen:true})
       let user_id = this.props.state.id
-      let trip_id = this.state.tripId
+      let trip_id = this.props.tripId
       let body = {user_id, trip_id, title:'holder', memory:'holder'}
       await axios.post(`${localhost}/tripEntries/getNewTripEntryId/${trip_id}`, body).then(response => {
         console.log('toggleModal: ', response.data.tripEntryId);
@@ -189,7 +192,7 @@ class MyTrips extends React.Component{
               setTripDetails={ this.setTripDetails }
               startDate={this.state.startDate}
               toggleModal={ this.state.toggleModal }
-              tripId={ this.state.tripId }
+              tripId={ this.props.tripId }
               tripName={ this.state.tripName }
               trips={ this.state.trips}
               tripEntries={ this.state.tripEntries }
@@ -198,14 +201,14 @@ class MyTrips extends React.Component{
             />
 
         }
-        { this.state.tripId ?
+        { this.props.tripId ?
           <TripEntrySidebar showEntryForm={this.toggleModal}/> :
           <Sidebar showTripForm={ this.toggleTripForm }/>
         }
         <EntryReactModal
             refreshTripEntries={this.refreshTripEntries}
             tripEntryId={ this.state.tripEntryId }
-            tripId={ this.state.tripId}
+            tripId={ this.props.tripId}
             userId={this.props.state.id}
             createMemory={ this.createMemory }
             handleChange={ this.handleChange}

@@ -7,8 +7,10 @@ dark blueishgreen #16434B
  */
 .sidebarContainer{
   align-self: flex-end;
-  position: absolute;
+  position: fixed;
   right:0;
+
+  /* z-index: -5; */
   top:121px;
   min-width: 25%;
   height: 100vh;

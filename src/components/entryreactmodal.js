@@ -71,7 +71,7 @@ class EntryReactModal extends React.Component{
   }
 
   render(){
-      console.log('modal is mounted', this.state.isOpen, 'tripEntryId', window.tripEntryId);
+      console.log('modal is mounted', this.state.isOpen, 'tripEntryId', this.props.tripEntryId);
     return (
       <ReactModal
         isOpen={this.props.isOpen}

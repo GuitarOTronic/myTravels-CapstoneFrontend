@@ -15,12 +15,26 @@ nav{
   color: #fff;
 }
 
+.navLink {
+  text-transform: uppercase;
+}
+.titleIcon{
+  display: flex;
+}
+.titleIcon h1{
+  font-size: 3rem;
+  font-family: 'Sedgwick Ave', cursive;
+  padding:0 .5rem;
+  margin: 0;
+  align-self: flex-end;
+}
 .navContainer{
     display:block;
     justify-content: center;
 }
 .navLinks{
   display: flex;
+  padding-top: 1rem;
   justify-content: space-between;
 }
 h1 {

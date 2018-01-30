@@ -1,19 +1,49 @@
-// import React from 'react'
-// import '../css/home.css'
-// class Home extends React.Component{
-//   constructor(props){
-//     super(props)
-//     console.log('home props => ', this.props);
-//   }
-//   render(){
-//     return (
-//       // <div className='nameDiv'>
-//       //   <h2>{ this.props.name ? ('Hey, ' + this.props.name + '!' ): 'Hey buddy'}</h2>
-//       // </div>
-//     )
-//   }
-//
-// }
-//
-//
-// export default Home
+import React from 'react'
+import '../css/home.css'
+import HomePhotos from './homephoto.js'
+import axios from 'axios'
+import _ from 'lodash'
+import Sidebar from './sidebar.js'
+const localhost ='http://localhost:2999'
+
+class Home extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      picArr:[]
+    }
+    // this.getHomePhotos = this.getHomePhotos.bind(this)
+  }
+
+  async componentDidMount() {
+    this.getHomePhotos()
+  }
+   getHomePhotos = () => {
+    axios.get(`${localhost}/pics`).then( response => {
+      console.log('dinkle',response.data);
+      // let shuffledPix = response.data.
+      let shuffledPix=_.shuffle(response.data)
+
+      this.setState({picArr:shuffledPix})
+    })
+  }
+
+  render(){
+    return (
+      <div>
+        <div className='photoContainer'>
+          <div className='homePhotos'>
+            {this.state.picArr.map((pic, i ) => <HomePhotos pic={ pic } key= { i }/>)}
+          </div>
+          {/* <Sidebar /> */}
+        </div>
+      </div>
+
+
+    )
+  }
+
+}
+
+
+export default Home

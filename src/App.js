@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './css/general.css'
 import MyTrips from './components/mytrips'
+import Home from './components/home'
 import Login from './components/login'
 import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
@@ -114,6 +115,17 @@ class App extends Component {
     })
   }
 
+  resetTripId =() => {
+    console.log('hey Navie');
+    // this.props.history.push('/mytrips', this.state)
+    this.setState({tripId:''})
+  }
+
+  setTripId =(tripId) => {
+    console.log('tripId ', tripId);
+    this.setState({tripId})
+  }
+
 
 
 
@@ -123,10 +135,10 @@ class App extends Component {
 
       <Router>
         <div>
-        <Navigation name={this.state.name} logout={this.handleLogout}/>
+        <Navigation name={this.state.name} logout={this.handleLogout} resetTripId = {this.resetTripId}/>
         <div className='main-container' id='main'>
 
-          {/* <Route path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/> */}
+          <Route exact path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/>
           <Route path = '/login'
             render = {(props) => <Login
               signIn={ this.handleSignIn }
@@ -139,6 +151,8 @@ class App extends Component {
             render = {(props) => <MyTrips
               createNewTrip={this.handleCreateNewTrip}
               props={props}
+              setTripId={ this.setTripId }
+              tripId={this.state.tripId}
               name={this.state.name}
               state={ this.state }/>}
             />

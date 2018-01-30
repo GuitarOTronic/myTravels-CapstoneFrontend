@@ -17,6 +17,8 @@ nav{
 
 .navLink {
   text-transform: uppercase;
+  text-decoration: underline;
+
 }
 .titleIcon{
   display: flex;
@@ -37,6 +39,9 @@ nav{
   padding-top: 1rem;
   justify-content: space-between;
 }
+a:hover{
+  color:#F3A32A;
+}
 h1 {
   display:block;
   text-align: center;
@@ -53,6 +58,7 @@ a {
 .loginContainerLink{
     display: flex;
     justify-content: flex-end;
+    padding-right: 3rem;
 }
  #signupLogin {
    margin:.3rem;

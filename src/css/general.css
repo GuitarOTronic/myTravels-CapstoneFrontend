@@ -4,6 +4,14 @@
   height: 100vh;
 
 }
+body {
+  /* font-family: 'Sedgwick Ave'; */
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  /* font-family: 'Sedgwick Ave'; */
+}
 /* @media screen and (max-width: 780px) {
   .tripTitle {
     font-size: 1rem;

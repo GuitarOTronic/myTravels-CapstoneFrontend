@@ -6,8 +6,9 @@ import '../../css/nav.css'
 const Navigation = ({name, logout, resetTripId}) => {
   return (
     <div className='banner'>
-       <div className='loginContainerLink'>{name ? <Link to='/login' id='signupLogin' onClick={logout}>logout</Link> :  <Link to='/login' id='signupLogin'>signup/login</Link>}</div>
+<div className='loginContainerLink'>{name ? <Link to='/login' id='signupLogin' onClick={logout}>logout</Link> :  <Link to='/login' id='signupLogin'>signup/login</Link>}</div>
       <nav>
+
         <div className='navContainer'>
           <div className='titleIcon'>
 
@@ -27,7 +28,9 @@ const Navigation = ({name, logout, resetTripId}) => {
             <Link to ='/#' >Current Travelers</Link> */}
           </div>
       </div>
+
       </nav>
+
     </div>
   )
 }

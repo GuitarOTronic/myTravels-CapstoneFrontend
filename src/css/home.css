@@ -17,3 +17,7 @@ h2{
 .homePhotos img {
   padding: .5rem;
 }
+
+img:hover {
+  /* padding: 1rem; */
+}

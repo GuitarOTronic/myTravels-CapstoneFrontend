@@ -4,6 +4,7 @@ import './css/general.css'
 import MyTrips from './components/mytrips'
 import Home from './components/home'
 import Login from './components/login'
+import FellowTravelers from './components/fellowtravelers.js'
 import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
@@ -33,7 +34,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state={
-      error:''
+      error:'',
+      showCarousel:false,
     }
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
@@ -118,7 +120,7 @@ class App extends Component {
   resetTripId =() => {
     console.log('hey Navie');
     // this.props.history.push('/mytrips', this.state)
-    this.setState({tripId:''})
+    this.setState({tripId:'', showCarousel:false})
   }
 
   setTripId =(tripId) => {
@@ -126,6 +128,9 @@ class App extends Component {
     this.setState({tripId})
   }
 
+  toggleCarousel= () => {
+    this.setState({showCarousel:!this.state.showCarousel})
+  }
 
 
 
@@ -139,6 +144,9 @@ class App extends Component {
         <div className='main-container' id='main'>
 
           <Route exact path = '/' render={() => <Home name={this.state.name} logout={this.handleLogout}/>}/>
+          <Route path = '/fellowtravelers'
+            render = {(props) => <FellowTravelers props={ props }/> }
+          />
           <Route path = '/login'
             render = {(props) => <Login
               signIn={ this.handleSignIn }
@@ -149,6 +157,8 @@ class App extends Component {
             render = {() => <Signup onSignup={ this.handleSignup } error={ this.state.error }/>}/>
           <Route path = '/mytrips'
             render = {(props) => <MyTrips
+              showCarousel={this.state.showCarousel}
+              toggleCarousel={this.toggleCarousel}
               createNewTrip={this.handleCreateNewTrip}
               props={props}
               setTripId={ this.setTripId }

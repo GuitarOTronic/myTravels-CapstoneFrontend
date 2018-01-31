@@ -10,6 +10,7 @@ import axios from 'axios'
 import MyTrips from './mytrips.js'
 const cl = new cloudinary.Cloudinary({ cloud_name: 'mytravels', secure: true})
 const localhost ='http://localhost:2999'
+
 class EntryReactModal extends React.Component{
   constructor(props){
     super(props)
@@ -27,9 +28,6 @@ class EntryReactModal extends React.Component{
 
   }
 
-  addPhotoToState =()=> {
-    console.log('helo');
-  }
 
   getTripId(){
     console.log('getTripId()');

@@ -5,15 +5,15 @@ light green #82BF6E
 aqua #3CB4CB
 dark blueishgreen #16434B
  */
-.sidebarContainer{
+.sidebarContainer {
   align-self: flex-end;
   position: fixed;
   right:0;
-
-  /* z-index: -5; */
-  top:121px;
+  bottom:0px;
+  top:131px;
+  height: 90vh;
+  /* min-height: 10000px; */
   min-width: 25%;
-  height: 100vh;
   background-color: #82BF6E;
 }
 
@@ -28,6 +28,6 @@ dark blueishgreen #16434B
    padding:1.5rem 1rem;
  }
  li :hover{
-   color:#F3A32A;
-   text-shadow:none;
+   color:#16434B;
+
  }

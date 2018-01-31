@@ -125,10 +125,11 @@ li{
   border:2px solid #3CB4CB;
   border-radius: 5px;
   align-self: center;
-}
+} 
 
 .allTripsContainer{
   display: flex;
+  padding-top: 2rem;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -140,12 +141,29 @@ li{
   /* align-self:baseline; */
   padding-left: 2rem;
 }
-
+.btnContainer{
+  display:flex;
+  justify-content: center;
+  /* background-color: black; */
+}
+._slideInner_fhwgk_1{
+  display:flex;
+  justify-content: center;
+}
 .imgDiv{
   padding: .5rem;
   align-self: center;
   /* width: 100px;
   height: 100px; */
+}
+
+.myTripsContainer{
+  /* background-image: url(../assets/steven-lewis-342.jpg);
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  height:100%; */
+  /* background-size: cover; */
 }
 
 .tripFormContainer{

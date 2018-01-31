@@ -4,6 +4,7 @@ h2{
 .photoContainer{
   display: flex;
   justify-content: center;
+  padding-top:2rem;
 }
 .homePhotos{
   width:75vw;

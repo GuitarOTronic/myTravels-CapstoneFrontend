@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import '../css/sidebar.css'
 
 const Sidebar =({ showTripForm }) => {
-
+  // console.log(window.$(document).height())
+// style={{ height: `${window.$(document).height()}px`}}
   return (
     <div className='sidebarContainer'>
-      <div className='sidebarLinkContainer'>
+      <div className='sidebarLinkContainer' >
         <li><Link onClick={ showTripForm } to='#'>Create New Trip</Link></li>
         <hr></hr>
         <li><Link to='#'>Past Trips</Link></li>

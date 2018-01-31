@@ -112,9 +112,6 @@ class MyTrips extends React.Component{
       });
     }
 
-  refreshTripEntries(){
-    // this.setTripDetails()
-  }
 
   setTripDetails = async ( id, name ) => {
     console.log('setTripDetails ****', this.props.tripId);
@@ -190,7 +187,9 @@ class MyTrips extends React.Component{
               photoId={ this.state.photoId }
               refreshTripEntries={this.refreshTripEntries}
               setTripDetails={ this.setTripDetails }
+              showCarousel={this.props.showCarousel}
               startDate={this.state.startDate}
+              toggleCarousel={this.props.toggleCarousel}
               toggleModal={ this.state.toggleModal }
               tripId={ this.props.tripId }
               tripName={ this.state.tripName }

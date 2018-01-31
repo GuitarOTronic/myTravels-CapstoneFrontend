@@ -54,6 +54,8 @@ a {
 
 .banner{
   background-color: #16434B;
+  position: fixed;
+  width:100%;
 }
 .loginContainerLink{
     display: flex;

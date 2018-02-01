@@ -9,8 +9,11 @@
   border-radius: 10px;
 }
 
+.trip{
+  opacity: .8;
+}
 .trip:hover{
-  opacity: .5;
+  opacity: 1;
 
     /* width:100%;
     height:100%;

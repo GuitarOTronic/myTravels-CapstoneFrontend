@@ -13,6 +13,8 @@ nav{
   padding:0 .5em .5em .5em;
   background-color: #16434B;
   color: #fff;
+  z-index: 2;
+
 }
 
 .navLink {
@@ -56,6 +58,7 @@ a {
   background-color: #16434B;
   position: fixed;
   width:100%;
+  z-index: 99;
 }
 .loginContainerLink{
     display: flex;

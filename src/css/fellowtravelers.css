@@ -1,3 +1,59 @@
+.entriesContainer{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
 .fellowTravelersContainer{
   padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.fellowEntry{
+  margin:.5rem;
+  width: 20vw;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+  flex-wrap: wrap;
+  background-color: grey;
+  transition: 0.25s;
+  -webkit-filter: opacity(.7);
+  filter: opacity(.7);
+  z-index: 1;
+}
+
+.fellowEntry:hover  {
+  -webkit-filter: opacity(1);
+  filter: opacity(1);
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+/* .overlay {
+    position: relative;
+   display: none;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+} */
+
+.fellowPics{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: .5rem;
+}
+.PicFellowPics{
+  padding: .5rem;
 }

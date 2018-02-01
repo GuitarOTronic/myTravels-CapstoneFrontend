@@ -17,15 +17,25 @@ class FellowTravelers extends React.Component{
 
   async getTripEntries(){
     await axios.get(`${localhost}/tripEntries`).then(response => {
-      console.log('get trip entries', response);
-      this.setState({tripEntries:response.data.response})
+      let tripEntries=response.data.tripEntries
+      let entriesArr=[]
+      for (let i in tripEntries){
+        entriesArr.push(tripEntries[i])
+      }
+      console.log('get trip entries', entriesArr);
+
+      this.setState({tripEntries:entriesArr})
     })
   }
   render(){
     return (
       <div className='fellowTravelersContainer'>
         {/* map over tripEntries componet  */}
-        {this.state.tripEntries.map((entry, i ) => <FellowEntries entry={ entry } key={ i }/>)}
+        <div className='entriesContainer'>
+            {this.state.tripEntries.map((entry, i ) => <FellowEntries entry={ entry } key={ i }/>)}
+        </div>
+
+
       </div>
     )
   }

@@ -29,5 +29,6 @@ dark blueishgreen #16434B
  }
  li :hover{
    color:#16434B;
+   transition: 0.15s;
 
  }

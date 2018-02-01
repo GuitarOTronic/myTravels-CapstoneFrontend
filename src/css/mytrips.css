@@ -79,9 +79,9 @@ li{
 }
 
 
-#overlay {
-    /* position: fixed; */
-    /* display: none;
+/* #overlay {
+    position: fixed;
+   display: none;
     width: 50%;
     height: 100%;
     top: 0;
@@ -90,9 +90,8 @@ li{
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
-    cursor: pointer; */
-
-}
+    cursor: pointer;
+} */
 
 /* #overlay:hover{
   position: fixed;
@@ -125,7 +124,7 @@ li{
   border:2px solid #3CB4CB;
   border-radius: 5px;
   align-self: center;
-} 
+}
 
 .allTripsContainer{
   display: flex;

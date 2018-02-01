@@ -9,7 +9,7 @@ import cloudinary from 'cloudinary-core'
 import axios from 'axios'
 import MyTrips from './mytrips.js'
 const cl = new cloudinary.Cloudinary({ cloud_name: 'mytravels', secure: true})
-const localhost ='http://localhost:2999'
+const localhost ='https://mytravels-capstone.herokuapp.com'
 
 class EntryReactModal extends React.Component{
   constructor(props){

@@ -7,7 +7,7 @@ import PicCarousel from './piccarousel.js'
 import axios from 'axios'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
-const localhost ='http://localhost:2999'
+const localhost ='https://mytravels-capstone.herokuapp.com'
 
 class TripsContainer extends React.Component {
   constructor (props){

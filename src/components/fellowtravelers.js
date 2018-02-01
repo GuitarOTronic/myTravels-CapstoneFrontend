@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/fellowtravelers.css'
 import FellowEntries from './fellowentries'
 import axios from 'axios'
-const localhost ='http://localhost:2999'
+const localhost ='https://mytravels-capstone.herokuapp.com'
 class FellowTravelers extends React.Component{
   constructor(props){
     super(props)

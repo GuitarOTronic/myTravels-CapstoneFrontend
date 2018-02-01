@@ -4,7 +4,7 @@ import HomePhotos from './homephoto.js'
 import axios from 'axios'
 import _ from 'lodash'
 import Sidebar from './sidebar.js'
-const localhost ='http://localhost:2999'
+const localhost ='https://mytravels-capstone.herokuapp.com'
 
 class Home extends React.Component{
   constructor(props){

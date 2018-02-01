@@ -36,14 +36,10 @@ class TripEntries extends React.Component {
         <div className='photosContainer'>
           {  this.photoId[this.id]!==undefined ?
             this.photoId[this.id].map((photo, i) => <Image onClick={(e)=> this.goToTripEntry(e, this.id) } cloudName="mytravels" publicId={photo +".jpg" } key ={ i }>
-              <Transformation width="150" crop="scale" />
+              <Transformation height="150" crop="scale" />
               <Transformation radius="0" border="1px_solid_black" />
             </Image>)
             :''
-           // <Image cloudName="mytravels" publicId={ photoId[id] +".jpg" } >
-           //    <Transformation width="150" crop="scale" />
-           //    <Transformation radius="0" border="1px_solid_black" />
-           //  </Image>
           }
         </div>
       </div>

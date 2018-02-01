@@ -17,13 +17,10 @@ li{
   /* min-width: 75%; */
 }
 .nameDiv{
+
   padding-top: 2rem;
   padding-left: 1rem;
 }
-/* .entryModal{
-  width:50vw;
-} */
-
 
 .entryFormModal{
   display: flex;
@@ -79,45 +76,6 @@ li{
   box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
 }
 
-
-/* #overlay {
-    position: fixed;
-   display: none;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
-} */
-
-/* #overlay:hover{
-  position: fixed;
-  display: none;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-} */
-/* #text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-} */
-
-
 .formContainer{
   margin-top: 2rem;
   min-height: 200px;
@@ -140,6 +98,9 @@ li{
   /* align-items: baseline; */
   /* align-self:baseline; */
   padding-left: 2rem;
+}
+.tripTitle h1{
+  font-family: 'Roboto', sans-serif;
 }
 .btnContainer{
   display:flex;

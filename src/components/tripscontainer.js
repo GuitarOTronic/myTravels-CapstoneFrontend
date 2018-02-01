@@ -58,7 +58,7 @@ class TripsContainer extends React.Component {
         <div className='nameDiv'>
           <h2>{ this.props.name ? ('Hey, ' + this.props.name + '!' ): ''}</h2>
         </div>
-        <div>
+        <div className='tripTitle'>
           <h1>{this.props.tripName ? this.props.tripName : 'myTrips' }</h1>
         </div>
         {this.props.showCarousel ?
@@ -68,7 +68,7 @@ class TripsContainer extends React.Component {
            :
           <div className='allTripsContainer'>
             {this.props.showAllTripPics ?
-              <PicCarousel picURLs={ this.props.tripPicIds } public_ids={   this.props.tripPicIds }/>
+              <PicCarousel picURLs={ this.props.tripPicIds } public_ids={ this.props.tripPicIds } showAllTripPics={ this.props.showAllTripPics}/>
               :
               [
                 this.props.tripId  ?

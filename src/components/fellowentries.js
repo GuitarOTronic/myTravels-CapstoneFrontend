@@ -46,9 +46,10 @@ class FellowEntries extends React.Component{
         </Collapse>
         <div className='fellowPics'>
           { this.state.isOpened ?
-            <PicCarousel public_ids={ this.props.entry.public_id} forFellowEntries ={ true }/> :
+            // <PicCarousel public_ids={ this.props.entry.public_id} forFellowEntries ={ true }/> :
+            this.props.entry.public_id.map((picId, i) => <Pic className='PicFellowPics' forFellowTravelers={ true } id={ picId } key={ i }/>):
             [this.props.entry.public_id.length > 1 ?
-              this.props.entry.public_id.map((picId, i) => <Pic className='PicFellowPics' forFellowTravelers={ true } id={ picId } key={ i }/>):
+              this.props.entry.public_id.slice(0, 4).map((picId, i) => <Pic className='PicFellowPics' forFellowTravelers={ true } id={ picId } key={ i }/>):
               <Pic id={ this.props.entry.public_id[0] } forFellowTravelers={ true } className='PicFellowPics'/>
             ]
           }

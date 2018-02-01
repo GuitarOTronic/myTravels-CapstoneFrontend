@@ -50,7 +50,7 @@ class MyTrips extends React.Component{
     this.toggleModal =this.toggleModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.addPhoto = this.addPhoto.bind(this)
-    console.log(this.props.toggleShowAllTripPics);
+
   }
 
   async componentDidMount(){
@@ -88,7 +88,7 @@ class MyTrips extends React.Component{
     const body ={ title, date, memory, trip_entry_id}
     axios.patch(`${localhost}/tripEntries`, body).then(response => {
       this.closeModal()
-      this.setTripDetails(this.state.tripId, this.state.tripName)
+      this.setTripDetails(this.state.tripId, this.props.tripName)
     })
 
   }
@@ -116,13 +116,14 @@ class MyTrips extends React.Component{
       let picIds = response.data.ids
       let tripEntries = response.data.tripEntries
 
-      this.props.setTripId(id||this.props.tripId)
-      this.setState({
-        tripName:name,
+
+     this.setState({
+        // tripName:name,
         photoId:picIds,
         memory:memory,
         tripEntries:tripEntries
       })
+      this.props.setTripId(id||this.props.tripId, name)
 
     }).catch((err)=> {
       console.log(err)
@@ -185,7 +186,7 @@ class MyTrips extends React.Component{
               toggleCarousel={this.props.toggleCarousel}
               toggleModal={ this.state.toggleModal }
               tripId={ this.props.tripId }
-              tripName={ this.state.tripName }
+              tripName={ this.props.tripName }
               trips={ this.state.trips}
               tripEntries={ this.state.tripEntries }
               tripEntryId={ this.state.tripEntryId }

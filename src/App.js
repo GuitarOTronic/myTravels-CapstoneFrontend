@@ -120,14 +120,13 @@ class App extends Component {
   }
 
   resetTripId =() => {
-    console.log('hey Navie');
     // this.props.history.push('/mytrips', this.state)
-    this.setState({tripId:'', showCarousel:false})
+    this.setState({tripId:'', tripName:'', showCarousel:false})
   }
 
-  setTripId = (tripId) => {
+  setTripId = (tripId, tripName) => {
     console.log('tripId ', tripId);
-    this.setState({tripId})
+    this.setState({tripId, tripName})
   }
 
   toggleShowAllTripPics = async () => {
@@ -179,6 +178,7 @@ class App extends Component {
               createNewTrip={ this.handleCreateNewTrip }
               tripPicIds={ this.state.tripPicIds }
               props={ props }
+              tripName={this.state.tripName}
               setTripId={ this.setTripId }
               tripId={ this.state.tripId }
               name={ this.state.name }

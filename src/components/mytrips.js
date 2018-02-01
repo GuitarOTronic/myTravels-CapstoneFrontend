@@ -118,7 +118,6 @@ class MyTrips extends React.Component{
 
 
      this.setState({
-        // tripName:name,
         photoId:picIds,
         memory:memory,
         tripEntries:tripEntries
@@ -137,7 +136,7 @@ class MyTrips extends React.Component{
       this.setState({modalIsOpen:true})
       let user_id = this.props.state.id
       let trip_id = this.props.tripId
-      let body = {user_id, trip_id, title:'holder', memory:'holder'}
+      let body = {user_id, trip_id, title:'Your Title', memory:'Your Memories'}
       await axios.post(`${localhost}/tripEntries/getNewTripEntryId/${trip_id}`, body).then(response => {
         window.tripEntryId=response.data.tripEntryId
       })

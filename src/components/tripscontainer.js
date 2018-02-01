@@ -14,6 +14,7 @@ class TripsContainer extends React.Component {
     super (props)
     this.state={
       showCarousel:this.props.showCarousel,
+      showAllTripPics: this.props.showAllTripPics,
       picURLs:[],
       public_ids:[],
     }
@@ -26,12 +27,9 @@ class TripsContainer extends React.Component {
       let public_ids= response.data.response.map((pic)=> {
         let url = pic.url
         return pic.public_id
-        // let body ={ url, publicId}
       })
-      console.log('picsArr>>>>>>', public_ids);
       this.setState({
         public_ids: public_ids,
-        // public_ids:picsIds
       })
     })
   }
@@ -39,7 +37,6 @@ class TripsContainer extends React.Component {
   toggleCarousel = (id) => {
     console.log('toggle dat carousel');
     this.props.toggleCarousel()
-    // this.setState( {showCarousel: !this.state.showCarousel})
     this.getTripEntryPics(id)
   }
 // = ({trips, memory, name, setTripDetails, tripId, tripName, addPhoto, tripEntries, photoId}) => {
@@ -59,25 +56,28 @@ class TripsContainer extends React.Component {
     return(
       <main>
         <div className='nameDiv'>
-          {/* <input className='cloudinary-fileupload'  type="file"></input> */}
           <h2>{ this.props.name ? ('Hey, ' + this.props.name + '!' ): ''}</h2>
         </div>
         <div>
           <h1>{this.props.tripName ? this.props.tripName : 'myTrips' }</h1>
         </div>
         {this.props.showCarousel ?
-            <div >
-              <PicCarousel picURLs={ this.state.picURLs } public_ids={ this.state.public_ids}/>
+            <div>
+              <PicCarousel public_ids={ this.state.public_ids}/>
             </div>
            :
           <div className='allTripsContainer'>
-            {this.props.tripId  ?
-              this.props.tripEntries.map((tripEntry, i) => <TripEntries toggleCarousel={ this.toggleCarousel } id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
-              this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } trip={ trip } key={ i }/>)
+            {this.props.showAllTripPics ?
+              <PicCarousel picURLs={ this.props.tripPicIds } public_ids={   this.props.tripPicIds }/>
+              :
+              [
+                this.props.tripId  ?
+                this.props.tripEntries.map((tripEntry, i) => <TripEntries toggleCarousel={ this.toggleCarousel } id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
+                this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } trip={ trip } key={ i }/>)
+              ]
             }
           </div>
       }
-        {/* <EntryReactModal refreshTripEntries={this.refreshTripEntries} tripEntryId={ this.props.tripEntryId } tripId={ this.state.tripId} userId={this.props.state.id} createMemory={ this.createMemory } handleChange={ this.handleChange} startDate={this.state.startDate} isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} addPhoto={ this.addPhoto }/> */}
 
       </main>
     )

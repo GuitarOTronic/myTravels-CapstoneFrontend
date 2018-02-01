@@ -8,12 +8,13 @@ dark blueishgreen #16434B
 .loginContainer{
   display: flex;
   justify-content:center;
-
+  padding-top: 2rem;
 }
 form{
   padding: .5rem .4rem;
   padding-top: 1rem;
 }
+
 input{
   display: block;
   margin-bottom: 1rem;

@@ -22,8 +22,6 @@ class FellowTravelers extends React.Component{
       for (let i in tripEntries){
         entriesArr.push(tripEntries[i])
       }
-      console.log('get trip entries', entriesArr);
-
       this.setState({tripEntries:entriesArr})
     })
   }

@@ -5,6 +5,7 @@
   margin-bottom: 1rem;
   justify-content: center;
   width: 50vw;
+  padding:1rem;
   /* align-content: center; */
   box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
 
@@ -54,4 +55,7 @@
 }
 .photosContainer img{
   padding: 0 1rem;
+}
+.photosContainer:hover img{
+  cursor: pointer;
 }

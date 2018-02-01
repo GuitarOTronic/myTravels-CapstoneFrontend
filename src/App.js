@@ -36,11 +36,13 @@ class App extends Component {
     this.state={
       error:'',
       showCarousel:false,
+      showAllTripPics:false,
     }
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.handleCreateNewTrip = this.handleCreateNewTrip.bind(this)
+    this.toggleShowAllTripPics = this.toggleShowAllTripPics.bind(this)
   }
 
   async componentDidMount(){
@@ -123,12 +125,25 @@ class App extends Component {
     this.setState({tripId:'', showCarousel:false})
   }
 
-  setTripId =(tripId) => {
+  setTripId = (tripId) => {
     console.log('tripId ', tripId);
     this.setState({tripId})
   }
 
-  toggleCarousel= () => {
+  toggleShowAllTripPics = async () => {
+
+    await axios.get(`${localhost}/pics/trip/${this.state.tripId}`).then(ids => {
+      console.log('ids', ids.data.ids);
+        this.setState({
+          showAllTripPics:!this.state.showAllTripPics,
+          tripPicIds:ids.data.ids
+        })
+
+    })
+
+  }
+
+  toggleCarousel = () => {
     this.setState({showCarousel:!this.state.showCarousel})
   }
 
@@ -157,14 +172,18 @@ class App extends Component {
             render = {() => <Signup onSignup={ this.handleSignup } error={ this.state.error }/>}/>
           <Route path = '/mytrips'
             render = {(props) => <MyTrips
-              showCarousel={this.state.showCarousel}
-              toggleCarousel={this.toggleCarousel}
-              createNewTrip={this.handleCreateNewTrip}
-              props={props}
+              toggleShowAllTripPics={ this.toggleShowAllTripPics }
+              showAllTripPics={ this.state.showAllTripPics }
+              showCarousel={ this.state.showCarousel}
+              toggleCarousel={ this.toggleCarousel }
+              createNewTrip={ this.handleCreateNewTrip }
+              tripPicIds={ this.state.tripPicIds }
+              props={ props }
               setTripId={ this.setTripId }
-              tripId={this.state.tripId}
-              name={this.state.name}
-              state={ this.state }/>}
+              tripId={ this.state.tripId }
+              name={ this.state.name }
+              state={ this.state }
+              />}
             />
         </div>
         </div>

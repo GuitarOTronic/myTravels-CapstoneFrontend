@@ -4,22 +4,23 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import Pic from './pic.js'
-const PicCarousel = ({ picURLs, public_ids }) => {
+const PicCarousel = ({ public_ids, forFellowEntries }) => {
 
   console.log('dat pics >>>>>', public_ids);
 
     return (
-      <div >
+      <div>
+       { forFellowEntries ?
         <CarouselProvider
         naturalSlideWidth={400}
         naturalSlideHeight={150}
-        totalSlides={public_ids.length}
-      >
+        totalSlides={ public_ids.length || 0}
+        >
         <Slider>
         { public_ids.map((id, i ) => {
           return (<Slide index={i}>
             <Image cloudName='mytravels' publicId={id}>
-            <Transformation height='400' crop="limit" />
+            <Transformation height='200' crop="limit" />
           </Image>
         </Slide>)
         })
@@ -30,19 +31,36 @@ const PicCarousel = ({ picURLs, public_ids }) => {
           <ButtonNext>Next</ButtonNext>
         </div>
 
-
       </CarouselProvider>
-        {/* <Slider {...settings} >
-          {public_ids.map((id, i )=> <Pic id={ id } key ={ i }/> )} */}
-            {/* <div><img src={picURLs} /></div>
-            <div><img src='http://placekitten.com/g/400/200' /></div>
-            <div><img src='http://placekitten.com/g/400/200' /></div>
-            <div><img src='http://placekitten.com/g/400/200' /></div> */}
-        {/* </Slider> */}
-      </div>
+      :
+        <CarouselProvider
+        naturalSlideWidth={400}
+        naturalSlideHeight={200}
+        totalSlides={ public_ids.length || 0}
+        >
+          <Slider>
+          { public_ids.map((id, i ) => {
+            return (<Slide index={i}>
+              <Image cloudName='mytravels' publicId={id}>
+              <Transformation height='400' crop="scale" />
+            </Image>
+          </Slide>)
+          })
+          }
+          </Slider>
+          <div className='btnContainer'>
+            <ButtonBack>Back</ButtonBack>
+            <ButtonNext>Next</ButtonNext>
+          </div>
+        </CarouselProvider>
 
-    );
 
-}
+    }
+    </div>
+  )
+  }
+
+
+
 
 export default PicCarousel

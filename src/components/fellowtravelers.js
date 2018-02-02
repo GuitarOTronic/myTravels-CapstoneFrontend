@@ -24,10 +24,12 @@ class FellowTravelers extends React.Component{
     let toggleShow = tripEntries.map((entry)=> {
       if(entry.country !== country){
         entry.show = false
+      }else{
+        entry.show = true
       }
       return entry
     })
-    console.log(toggleShow);
+
     this.setState({tripEntries:toggleShow})
     // await axios.get(`${localhost}/tripEntries/filter/${this.state.country}`).then(response => {
       // console.log('filtered res', response );

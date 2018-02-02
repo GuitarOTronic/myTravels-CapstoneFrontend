@@ -2,6 +2,7 @@ import React from 'react'
 import Pic from './pic.js'
 import {Collapse} from 'react-collapse';
 import PicCarousel from './piccarousel.js'
+
 class FellowEntries extends React.Component{
   constructor(props){
     super(props)
@@ -20,11 +21,15 @@ class FellowEntries extends React.Component{
   }
 
   render(){
+    console.log(this.props.entry.show);
     return (
+       this.props.entry.show ?
+
       <div className='fellowEntry overlay'
         onClick={ this.showFellowEntry }
         style={this.state.isWide ? {width:'50vw', transition:'.025s'} : {}}
         data-tripentryid={this.props.entry.trip_entry_id}
+
       >
         <h3>
           {this.props.entry.title}
@@ -55,6 +60,9 @@ class FellowEntries extends React.Component{
           }
         </div>
       </div>
+      :
+      ''
+      
     )
   }
 

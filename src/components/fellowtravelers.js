@@ -18,10 +18,20 @@ class FellowTravelers extends React.Component{
   }
 
   filter = async () => {
-    console.log('heyo');
-    await axios.get(`${localhost}/tripEntries/filter/${this.state.country}`).then(response => {
-      console.log('filtered res', response );
+    console.log('tripEntries', this.state.tripEntries);
+    let tripEntries = this.state.tripEntries
+    let country = this.state.country
+    let toggleShow = tripEntries.map((entry)=> {
+      if(entry.country !== country){
+        entry.show = false
+      }
+      return entry
     })
+    console.log(toggleShow);
+    this.setState({tripEntries:toggleShow})
+    // await axios.get(`${localhost}/tripEntries/filter/${this.state.country}`).then(response => {
+      // console.log('filtered res', response );
+    // })
   }
 
   async getTripEntries(){
@@ -29,6 +39,7 @@ class FellowTravelers extends React.Component{
       let tripEntries=response.data.tripEntries
       let entriesArr=[]
       for (let i in tripEntries){
+        tripEntries[i].show=true
         entriesArr.push(tripEntries[i])
       }
       this.setState({tripEntries:entriesArr})

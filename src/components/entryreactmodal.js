@@ -8,8 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import cloudinary from 'cloudinary-core'
 import axios from 'axios'
 import MyTrips from './mytrips.js'
+
 const cl = new cloudinary.Cloudinary({ cloud_name: 'mytravels', secure: true})
-const localhost ='https://mytravels-capstone.herokuapp.com'
+const localhost =process.env.REACT_APP_LOCAL_HOST
 
 class EntryReactModal extends React.Component{
   constructor(props){

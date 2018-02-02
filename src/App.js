@@ -11,9 +11,16 @@ import Signup from './components/signup'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
 
-const localhost ='https://mytravels-capstone.herokuapp.com'
+const localhost = process.env.REACT_APP_LOCAL_HOST
+// change .env for server
+//REACT_APP_LOCAL_HOST='http://localhost:2999'
+// REACT_APP_LOCAL_HOST='https://mytravels-capstone.herokuapp.com'
+
+
 window.CLOUDINARY_URL=' https://api.cloudinary.com/v1_1/mytravels/image/upload'
 const cloud_name= 'mytravels'
+
+
 window.AddTokenToHeader = function () {
     let token = localStorage.getItem('token')
     if(token){

@@ -10,34 +10,34 @@ class FellowEntries extends React.Component{
       isWide:false
     }
     this.showFellowEntry=this.showFellowEntry.bind(this)
-    console.log(this.props);
   }
 
   showFellowEntry=(id)=> {
-    // console.log(id);
     this.setState({
       isOpened:!this.state.isOpened,
       isWide:!this.state.isWide
     })
   }
 
-  // } =({ entry, showFellowEntry }) => {
-  //   console.log('entry>>>>> ', entry);
   render(){
     return (
-      <div className='fellowEntry overlay' onClick={ this.showFellowEntry } style={this.state.isWide ? {width:'50vw', transition:'.025s'} : {}} data-tripentryid={this.props.entry.trip_entry_id}>
-          <h3>
-            {this.props.entry.title}
-          </h3>
-            <hr className='fellowLines'></hr>
-            <div className='fellowEntryLocName'>
-            Location: {this.props.entry.region + ', ' + this.props.entry.country }
-            </div>
-            <hr className='fellowLines'></hr>
-            <div className='fellowEntryLocName'>
-            From user:{' '+ this.props.entry.name}
+      <div className='fellowEntry overlay'
+        onClick={ this.showFellowEntry }
+        style={this.state.isWide ? {width:'50vw', transition:'.025s'} : {}}
+        data-tripentryid={this.props.entry.trip_entry_id}
+      >
+        <h3>
+          {this.props.entry.title}
+        </h3>
+          <hr className='fellowLines'></hr>
+          <div className='fellowEntryLocName'>
+          Location: {this.props.entry.region + ', ' + this.props.entry.country }
           </div>
-            <hr className='fellowLines'></hr>
+          <hr className='fellowLines'></hr>
+          <div className='fellowEntryLocName'>
+          From user:{' '+ this.props.entry.name}
+        </div>
+          <hr className='fellowLines'></hr>
 
         <Collapse isOpened={this.state.isOpened}>
           <div className='fellowMemories'>

@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import ReactModal from 'react-modal';
 import EntryReactModal from './entryreactmodal.js'
 import 'react-datepicker/dist/react-datepicker.css';
-const localhost ='https://mytravels-capstone.herokuapp.com'
+const localhost =process.env.REACT_APP_LOCAL_HOST
 
 // let cloudinary: { api_key: "128598374176225", cloud_name: "mytravels", unsigned_upload_preset: "ncc1xgsl" }
 window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });

@@ -184,6 +184,7 @@ class MyTrips extends React.Component{
               startDate={this.state.startDate}
               toggleCarousel={this.props.toggleCarousel}
               toggleModal={ this.state.toggleModal }
+              toggleShowAllTripPics={ this.props.toggleShowAllTripPics}
               tripId={ this.props.tripId }
               tripName={ this.props.tripName }
               trips={ this.state.trips}

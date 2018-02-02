@@ -56,19 +56,28 @@ class TripsContainer extends React.Component {
     return(
       <main>
         <div className='nameDiv'>
-          <h2>{ this.props.name ? ('Hey, ' + this.props.name + '!' ): ''}</h2>
+          {!this.props.showAllTripPics ?
+            <h2>Hey, {this.props.name}! </h2> :
+            ''
+          }
+
         </div>
         <div className='tripTitle'>
           <h1>{this.props.tripName ? this.props.tripName : 'myTrips' }</h1>
         </div>
         {this.props.showCarousel ?
             <div>
-              <PicCarousel public_ids={ this.state.public_ids}/>
+              <PicCarousel toggleCarousel={ this.toggleCarousel } public_ids={ this.state.public_ids}/>
             </div>
            :
-          <div className='allTripsContainer'>
+          <div className='allTripsContainer' style={this.props.showAllTripPics ? {display:'block'}: {display:'flex'}}>
             {this.props.showAllTripPics ?
-              <PicCarousel picURLs={ this.props.tripPicIds } public_ids={ this.props.tripPicIds } showAllTripPics={ this.props.showAllTripPics}/>
+              <PicCarousel
+                picURLs={ this.props.tripPicIds }
+                public_ids={ this.props.tripPicIds }
+                showAllTripPics={ this.props.showAllTripPics}
+                toggleShowAllTripPics={ this.props.toggleShowAllTripPics }
+              />
               :
               [
                 this.props.tripId  ?

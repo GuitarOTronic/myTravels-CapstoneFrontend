@@ -86,45 +86,33 @@ li{
 }
 
 .allTripsContainer{
-  display: flex;
   padding-top: 2rem;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   align-self: center;
-
 }
 .tripTitleContainer{
-  /* align-items: baseline; */
-  /* align-self:baseline; */
   padding-left: 2rem;
 }
+
 .tripTitle h1{
   font-family: 'Roboto', sans-serif;
 }
+
 .btnContainer{
   display:flex;
   justify-content: center;
-  /* background-color: black; */
 }
+
 ._slideInner_fhwgk_1{
   display:flex;
   justify-content: center;
 }
+
 .imgDiv{
   padding: .5rem;
   align-self: center;
-  /* width: 100px;
-  height: 100px; */
-}
-
-.myTripsContainer{
-  /* background-image: url(../assets/steven-lewis-342.jpg);
-  background-position: center;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  height:100%; */
-  /* background-size: cover; */
 }
 
 .tripFormContainer{
@@ -139,35 +127,7 @@ position: relative;
 padding: 0;
 margin: 0;
 }
-/* .wp-caption img {
-display: block;
-max-width: 100%;
-height: auto;
-} */
-/* .overlay {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  color: #fff;
-  left: 0;
-  bottom: 0;
-  padding: 0.75em 1em;
-  font-weight: 700;
-  z-index: 2;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: rgba(0,0,0,.7);
-  -webkit-transition: opacity .3s ease-in-out;
-  transition: opacity .3s ease-in-out;
-}
-.overlay:hover {
-  opacity: 1;
-  color:red;
-} */
 
-/* @media screen and (max-width: 581px){
-
-} */
 @media screen and (max-width: 780px) {
   .tripTitle {
     font-size: 1rem;

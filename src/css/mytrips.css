@@ -17,7 +17,7 @@ li{
   /* min-width: 75%; */
 }
 .nameDiv{
-
+  color:#fff;
   padding-top: 2rem;
   padding-left: 1rem;
 }
@@ -70,9 +70,10 @@ li{
   display: flex;
   border: 2px solid black;
   margin-bottom: 1rem;
-  justify-content: center;
-  width: 30vw;
-  align-content: center;
+  justify-content: space-between;
+  width:45vw;
+  align-items: center;
+  background-color:rgba(0,0,0,0.8);
   box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
 }
 
@@ -94,12 +95,18 @@ li{
 }
 .tripTitleContainer{
   padding-left: 2rem;
+  padding-right: 4rem;
 }
 
 .tripTitle h1{
   font-family: 'Roboto', sans-serif;
+  color:#fff;
 }
-
+.trip h2 {
+  padding-left: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color:#fff;
+}
 .btnContainer{
   display:flex;
   justify-content: center;
@@ -113,6 +120,11 @@ li{
 .imgDiv{
   padding: .5rem;
   align-self: center;
+  padding-left: 4rem;
+}
+
+.imgDiv img{
+  border-radius: 22px;
 }
 
 .tripFormContainer{

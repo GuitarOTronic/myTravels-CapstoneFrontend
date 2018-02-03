@@ -1,4 +1,10 @@
-
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */
 
 .container  {
 
@@ -15,13 +21,18 @@
   border: 2px solid red;
   padding: 1rem;
   max-width: 20rem;
+  background-color:rgba(212,52,0,0.6);
 
 }
-
+.confirmationMessage p{
+    font-size: 1rem;
+    color:#fff;
+}
 .confirmationMessage button{
   margin: .5rem;
   max-width: 3rem;
   align-self: center;
+
 }
 
 .confirmationMessage:hover button{
@@ -32,18 +43,6 @@
     display: flex;
     justify-content: center;
 
-}
-
- .memoryContainer{
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
-  margin-bottom: 1rem;
-  justify-content: center;
-  width: 50vw;
-  padding:1rem;
-  /* align-content: center; */
-  box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
 }
 
 .innerTrip{
@@ -64,6 +63,18 @@
   opacity: 1;
 }
 
+.memoryContainer{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin-bottom: 1rem;
+  justify-content: center;
+  width: 50vw;
+  padding:1rem;
+  background-color: #fff;
+  opacity: .8;
+  box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
+}
 
 .memoryContainer h3{
   text-align: center;
@@ -72,8 +83,14 @@
 .memoryContainer h4 {
   padding-left: 1rem;
 }
+
 .memoryContainer p {
   padding:0 2rem;
+}
+
+.memoryContainer hr{
+  border: .5px thin black;
+  width: 35%;
 }
 
 .photosContainer{
@@ -107,4 +124,10 @@
   display:flex;
   flex-direction: column;
   justify-content: center;
+}
+.userAlterataionsContainer button{
+  background-color: #82BF6E;
+  font-size: 1rem;
+  border-radius: 5px;
+  border:1px solid #16434B;
 }

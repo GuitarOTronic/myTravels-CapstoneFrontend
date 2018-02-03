@@ -1,22 +1,23 @@
-h2{
-  padding-left: 1rem;
-}
+
+
 .photoContainer{
   display: flex;
   justify-content: center;
   padding-top:2rem;
 }
+
 .homePhotos{
   width:75vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-
+  background-color:rgba(0,0,0,0.6);
 }
 
 .homePhotos img {
   padding: .5rem;
+  border-radius: 18px;
 }
 
 img:hover {

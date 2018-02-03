@@ -51,6 +51,7 @@ class TripEntries extends React.Component {
         <div>
           <h3>{ this.title }</h3>
         </div>
+        <hr></hr>
         <div>
           <h4>{ createdAt }</h4>
         </div>
@@ -74,7 +75,7 @@ class TripEntries extends React.Component {
           <div >
             <Collapse isOpened={this.state.isOpened} style={{'padding-left':'25%'}}>
               <div className='confirmationMessage'>
-                Are you sure you want to delete this memory?
+                <p>Are you sure you want to delete this memory?</p>
                 <div className='confirmationMessageBtns'>
                   <button onClick={this.deleteTripEntry}>Yes</button>
                   <button onClick={this.toggleDeleteConfirm}>No</button>

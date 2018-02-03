@@ -16,7 +16,7 @@
 
 .fellowLines{
   border-color:#16434B;
-  /* width:45%; */
+  width:55%;
   align-items: flex-start;
 }
 .fellowEntry{
@@ -45,6 +45,12 @@
 
 .fellowEntryLocName{
   text-align: left;
+
+}
+
+.fellowEntryUserName{
+  text-align: left;
+  flex-direction: column;
 }
 
 .fellowMemories{
@@ -62,6 +68,11 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: .5rem;
+  margin:1rem 0;
+  border: 2px solid #333;
+  background-color:rgba(105,105,105,0.4);
+  border-radius: 3px;
+
 }
 .overlay img{
   transition: 1s;

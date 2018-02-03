@@ -13,7 +13,7 @@ import axios from 'axios'
 
 const localhost = process.env.REACT_APP_LOCAL_HOST
 // change .env for server
-//REACT_APP_LOCAL_HOST='http://localhost:2999'
+// REACT_APP_LOCAL_HOST='http://localhost:2999'
 // REACT_APP_LOCAL_HOST='https://mytravels-capstone.herokuapp.com'
 
 

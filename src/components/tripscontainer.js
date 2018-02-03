@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import EntryReactModal from './entryreactmodal.js'
 import PicCarousel from './piccarousel.js'
 import axios from 'axios'
-// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+
 
 const localhost =process.env.REACT_APP_LOCAL_HOST
 
@@ -13,12 +13,20 @@ class TripsContainer extends React.Component {
   constructor (props){
     super (props)
     this.state={
+      deleted: false,
       showCarousel:this.props.showCarousel,
       showAllTripPics: this.props.showAllTripPics,
       picURLs:[],
       public_ids:[],
     }
     this.toggleCarousel=this.toggleCarousel.bind(this)
+  }
+
+  deleteTripEntry = async (tripEntryId) => {
+    await axios.delete(`${localhost}/tripEntries/${tripEntryId}`).then(response => {
+
+      this.setState({deleted:true})
+    })
   }
 
   getTripEntryPics = async(id) => {
@@ -81,7 +89,7 @@ class TripsContainer extends React.Component {
               :
               [
                 this.props.tripId  ?
-                this.props.tripEntries.map((tripEntry, i) => <TripEntries toggleCarousel={ this.toggleCarousel } id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
+                this.props.tripEntries.map((tripEntry, i) => <TripEntries deleted={ this.state.deleted } deleteTripEntry={this.deleteTripEntry} toggleCarousel={ this.toggleCarousel } id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
                 this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } trip={ trip } key={ i }/>)
               ]
             }

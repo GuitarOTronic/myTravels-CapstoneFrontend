@@ -1,4 +1,40 @@
-.memoryContainer{
+
+
+.container  {
+
+   /* width: 80%; */
+   color: #333;
+   background: #419be0;
+   padding: 3rem;
+   max-width: 960px;
+   margin: 0 auto;
+ }
+
+.confirmationMessage{
+  color:#2d2d2d;
+  border: 2px solid red;
+  padding: 1rem;
+  max-width: 20rem;
+
+}
+
+.confirmationMessage button{
+  margin: .5rem;
+  max-width: 3rem;
+  align-self: center;
+}
+
+.confirmationMessage:hover button{
+    cursor: pointer;
+}
+
+.confirmationMessageBtns{
+    display: flex;
+    justify-content: center;
+
+}
+
+ .memoryContainer{
   display: flex;
   flex-direction: column;
   border: 2px solid black;
@@ -8,7 +44,6 @@
   padding:1rem;
   /* align-content: center; */
   box-shadow:  3px 7px 5px 0px rgba(0,0,0,0.4);
-
 }
 
 .innerTrip{
@@ -28,15 +63,7 @@
 .innerTrip:hover{
   opacity: 1;
 }
-.container  {
 
-   /* width: 80%; */
-   color: #333;
-   background: #419be0;
-   padding: 3rem;
-   max-width: 960px;
-   margin: 0 auto;
- }
 
 .memoryContainer h3{
   text-align: center;
@@ -58,4 +85,26 @@
 }
 .photosContainer:hover img{
   cursor: pointer;
+}
+
+.tripEntryBtnContainer{
+  align-self: center;
+  /* justify-content: center; */
+  margin: 1rem 0;
+
+}
+
+.tripEntryBtnContainer button{
+  padding: 0 1rem;
+  margin: 0 1rem;
+}
+
+.tripEntryBtnContainer:hover button{
+  cursor: pointer;
+}
+
+.userAlterataionsContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }

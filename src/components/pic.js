@@ -2,7 +2,6 @@ import React from 'react'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 const Pic =({id, forFellowTravelers}) => {
-  console.log('pic>>> ', id);
   return(
     // <div><img src={id} /></div>
     // <Image src={ id }/>

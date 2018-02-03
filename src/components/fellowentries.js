@@ -11,7 +11,11 @@ class FellowEntries extends React.Component{
       isWide:false
     }
     this.showFellowEntry=this.showFellowEntry.bind(this)
+
+
   }
+
+
 
   showFellowEntry=(id)=> {
     this.setState({
@@ -59,10 +63,11 @@ class FellowEntries extends React.Component{
             ]
           }
         </div>
+
       </div>
       :
       ''
-      
+
     )
   }
 

@@ -126,7 +126,8 @@ dark blueishgreen #16434B
   justify-content: center;
 }
 .userAlterataionsContainer button{
-  background-color: #82BF6E;
+  background-color: #505E70;
+  color:#fff;
   font-size: 1rem;
   border-radius: 5px;
   border:1px solid #16434B;

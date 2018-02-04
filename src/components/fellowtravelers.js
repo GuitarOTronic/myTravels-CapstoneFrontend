@@ -3,14 +3,17 @@ import '../css/fellowtravelers.css'
 import FellowEntries from './fellowentries'
 import axios from 'axios'
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {Collapse} from 'react-collapse';
 const localhost = process.env.REACT_APP_LOCAL_HOST
 class FellowTravelers extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      tripEntries:[]
+      tripEntries:[],
+      isOpened:false
     }
     this.selectCountry=this.selectCountry.bind(this)
+    this.showFilter=this.showFilter.bind(this)
   }
 
    componentDidMount = async () => {
@@ -29,11 +32,7 @@ class FellowTravelers extends React.Component{
       }
       return entry
     })
-
     this.setState({tripEntries:toggleShow})
-    // await axios.get(`${localhost}/tripEntries/filter/${this.state.country}`).then(response => {
-      // console.log('filtered res', response );
-    // })
   }
 
   async getTripEntries(){
@@ -52,18 +51,38 @@ class FellowTravelers extends React.Component{
     this.setState({country:val})
    }
 
+  showFilter(){
+    this.setState({isOpened:!this.state.isOpened})
+  }
+
   render(){
     return (
-      <div className='fellowTravelersContainer'>
-        <div className='searchBar'>
-          Filter by Country:
-          <CountryDropdown value={this.state.country} onChange={(val) => this.selectCountry(val)}> </CountryDropdown>
-          <button onClick={this.filter}>filter</button>
-        </div>
-        <div className='entriesContainer'>
+      // <Collapse isOpened={this.state.isOpened}>
+      //   <div className='fellowMemories'>
+      //     {this.props.entry.memory}
+      //   </div>
+      // </Collapse>
+      <div>
+        <div className='fellowTravelersContainer'>
+          <div className='filterBtnsContainer'>
+            <button className='showFilterBtn' onClick={this.showFilter} style={!this.state.isOpened ? {display:'block'}:{display:'none'}}>Filter by country</button>
+            <Collapse isOpened={this.state.isOpened}>
+              <div className='searchBar'>
+                <div>
+                  Filter by Country:{'   '}
+                  <CountryDropdown  value={this.state.country} onChange={(val) => this.selectCountry(val)}> </CountryDropdown>
+                  <button className='filterBtn' onClick={this.filter}>filter</button>
+                </div>
+                <div>
+                  <i onClick={this.showFilter} className='closeFilter material-icons'>close</i>
+                </div>
+              </div>
+            </Collapse>
+          </div>
+          <div className='entriesContainer'>
             {this.state.tripEntries.map((entry, i ) => <FellowEntries entry={ entry } key={ i }/>)}
+          </div>
         </div>
-
 
       </div>
     )

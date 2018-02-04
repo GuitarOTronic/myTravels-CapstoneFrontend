@@ -60,7 +60,7 @@ class FellowEntries extends React.Component{
           </div>
           <div>
             <div className='fellowEntryUserName'>
-              From user:{' '+ this.props.entry.name}
+              by:{' '+ this.props.entry.name}
             </div>
         </div>
       </div>

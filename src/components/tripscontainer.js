@@ -62,7 +62,7 @@ class TripsContainer extends React.Component {
     return(
       <main>
         <div className='nameDiv'>
-          {!this.props.showAllTripPics ?
+          {!this.props.showAllTripPics && !this.props.showCarousel && !this.props.tripId?
             <h2>Hey, {this.props.name}! </h2> :
             ''
           }

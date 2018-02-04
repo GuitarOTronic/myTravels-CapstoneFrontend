@@ -1,4 +1,15 @@
-.entriesContainer{
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */
+
+.closeFilter:hover{
+  cursor: pointer;
+}
+ .entriesContainer{
   display: flex;
   flex-wrap:wrap;
   justify-content: center;
@@ -7,7 +18,7 @@
 
 
 .fellowTravelersContainer{
-  padding-top: 2rem;
+  padding-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   /* justify-content: center; */
@@ -74,6 +85,16 @@
   border-radius: 3px;
 
 }
+
+.filterBtn{
+  margin-left: 1rem;
+  padding: .2rem 1rem;
+}
+
+.filterBtn:hover{
+  cursor: pointer;
+}
+
 .overlay img{
   transition: 1s;
   transition: scale(1.1) 1s ease-in-out;
@@ -87,3 +108,31 @@
 .PicFellowPics{
   padding: .5rem;
 }
+.searchBar{
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3A32A;
+  padding: 1rem .5rem 1rem .5rem;
+  width: 82vw;
+  /* height:3rem; */
+
+}
+.showFilterBtn{
+  padding:1rem;
+  background-color: #F3A32A;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.showFilterBtn:hover{
+  cursor: pointer;
+}
+.filterBtnsContainer{
+  display: flex;
+}
+/*
+bright salamon #E94858
+mustard #F3A32A
+light green #82BF6E
+aqua #3CB4CB
+dark blueishgreen #16434B
+ */

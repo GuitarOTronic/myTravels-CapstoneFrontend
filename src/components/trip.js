@@ -5,18 +5,19 @@ import TripEntries from './tripentries.js'
 import $ from 'jquery';
 import '../css/tripview.css'
 
-const Trip= ({trip, setTripDetails}) => {
+const Trip= ({trip, setTripDetails, public_id}) => {
 
   function goToTripEntries(e){
     setTripDetails(trip.id, trip.title)
   }
-
+console.log(trip);
   return(
+
       <div className='trip ' id={ trip.id } onClick={ goToTripEntries } >
         {/* <h2 className='overlay'>{trip.title}</h2> */}
         {/* <div className='innerTrip'> */}
           <div className='imgDiv'>
-            <Image cloudName="mytravels" publicId="owpsfonr0i72p26wnj5n.jpg" >
+            <Image cloudName="mytravels" publicId={ public_id } >
               <Transformation width="150" crop="scale" />
               <Transformation radius="20" border="2px_solid_black" />
             </Image>

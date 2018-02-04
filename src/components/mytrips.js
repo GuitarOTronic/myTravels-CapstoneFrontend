@@ -95,9 +95,19 @@ class MyTrips extends React.Component{
   //get trips then store them in state
   getTrips = async () => {
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
+
+      console.log('getTrips:>>>', response.data);
+      let trips=[]
+      response.data.trips.map((trip) => {
+        if (trip !== null){
+            trips.push(trip)
+        }
+      })
+      // adding be routes to include public_id for trip pics
+      console.log(trips);
       this.setState({
           showNewTripForm:false,
-          trips:response.data.response,
+          trips:trips,
         })
     }).catch((err)=> {
       console.log(err);

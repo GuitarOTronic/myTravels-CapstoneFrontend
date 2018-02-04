@@ -31,7 +31,6 @@ class TripsContainer extends React.Component {
 
   getTripEntryPics = async(id) => {
     await axios.get(`${localhost}/pics/${id}`).then(response => {
-      console.log(response.data.response);
       let public_ids= response.data.response.map((pic)=> {
         let url = pic.url
         return pic.public_id
@@ -43,7 +42,6 @@ class TripsContainer extends React.Component {
   }
 
   toggleCarousel = (id) => {
-    console.log('toggle dat carousel');
     this.props.toggleCarousel()
     this.getTripEntryPics(id)
   }
@@ -90,7 +88,7 @@ class TripsContainer extends React.Component {
               [
                 this.props.tripId  ?
                 this.props.tripEntries.map((tripEntry, i) => <TripEntries deleted={ this.state.deleted } deleteTripEntry={this.deleteTripEntry} toggleCarousel={ this.toggleCarousel } id={ tripEntry.id } date={tripEntry.date} memory={ tripEntry.memory } photoId={this.props.photoId} title= { tripEntry.title } key={ i }/>) :
-                this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } trip={ trip } key={ i }/>)
+                this.props.trips.map((trip, i) => <Trip  setTripDetails={ this.props.setTripDetails } public_id={trip.public_id[0]} trip={ trip } key={ i }/>)
               ]
             }
           </div>

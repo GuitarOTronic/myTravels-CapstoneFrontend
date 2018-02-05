@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Navigation from './shared/nav'
 import '../css/login.css'
 
 const Signup =({ error, onSignup }) => {
@@ -16,7 +15,6 @@ const Signup =({ error, onSignup }) => {
          password:
          <input required className='inputField' type='password' ></input>
           <input type="submit" value="Create Account" />
-
         </form>
         <div id='signupError'></div>
         {error ? <div className='error'>{error.signup}</div>: ''}

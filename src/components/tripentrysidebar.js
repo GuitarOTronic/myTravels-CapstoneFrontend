@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import '../css/sidebar.css'
 
 const TripEntrySidebar =({ showEntryForm, toggleShowAllTripPics  }) => {
-console.log(toggleShowAllTripPics);
 
   return (
     <div className='sidebarContainer' >

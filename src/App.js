@@ -68,10 +68,7 @@ class App extends Component {
     console.log('handle createNewTrip =>', history);
     const user_id = this.state.id
     const body = {title, country, region, user_id}
-    await axios.post(`${localhost}/trips`, body).then(response => {
-      console.log('handled createNewTrip => ', response);
-      // this.history.push('/mytrips', this.state)
-    })
+    await axios.post(`${localhost}/trips`, body)
   }
 
   async handleLogout(){
@@ -106,7 +103,6 @@ class App extends Component {
   }
 
   async handleSignup(e){
-    console.log('handleSignup =>  ');
     e.preventDefault()
     const name = e.target.querySelectorAll('input')[0].value
     const email = e.target.querySelectorAll('input')[1].value
@@ -127,12 +123,10 @@ class App extends Component {
   }
 
   resetTripId =() => {
-    // this.props.history.push('/mytrips', this.state)
     this.setState({tripId:'', tripName:'', showCarousel:false})
   }
 
   setTripId = (tripId, tripName) => {
-    console.log('tripId ', tripId);
     this.setState({tripId, tripName})
   }
 
@@ -144,6 +138,7 @@ class App extends Component {
       ids.data.response.forEach(id=> {
         tripPicIdArr.push(id.public_id)
       })
+      console.log('tripPicIdArr>>>>>>>>>>>', tripPicIdArr);
         this.setState({
           showAllTripPics:!this.state.showAllTripPics,
           tripPicIds:tripPicIdArr
@@ -155,9 +150,6 @@ class App extends Component {
   toggleCarousel = () => {
     this.setState({showCarousel:!this.state.showCarousel})
   }
-
-
-
 
   render() {
     return (

@@ -31,6 +31,7 @@ class Home extends React.Component{
   render(){
     return (
       <div>
+        {/* <h1>Photos from around the world</h1> */}
         <div className='photoContainer'>
           <div className='homePhotos'>
             {this.state.picArr.map((pic, i ) => <HomePhotos pic={ pic } key= { i }/>)}

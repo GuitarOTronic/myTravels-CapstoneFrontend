@@ -8,7 +8,7 @@
 myTravels is my capstone project for Galvanize's Wed Development Immersive. The idea behind myTravels is to give users a travel oriented social platform to share photos, comments, and travel notes and connect them to fellow travelers. 
 
 
-## NEXT STEPS
+##  GOING FOWARD
 - Make it mobile friendly
 - Add a chat feature
 - Add a tag feature to improve filtering 

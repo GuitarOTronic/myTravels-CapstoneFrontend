@@ -15,23 +15,7 @@ import EntryReactModal from './entryreactmodal.js'
 import 'react-datepicker/dist/react-datepicker.css';
 const localhost =process.env.REACT_APP_LOCAL_HOST
 
-// let cloudinary: { api_key: "128598374176225", cloud_name: "mytravels", unsigned_upload_preset: "ncc1xgsl" }
 window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
-
-
-// if(window.$.fn.cloudinary_fileupload !== undefined) {
-//   window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-//       console.log('data ', data);
-//       this.addPhoto(data.result.public_id, data.result.url)
-//     })
-//   }
-// function uploady(){
-//   console.log(  window.$("input.cloudinary-fileupload[type=file]"))
-//   window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-//       console.log('data ', data, );
-//       // this.addPhoto(data.result.public_id, data.result.url)
-//     })
-// }
 
 class MyTrips extends React.Component{
   constructor(props){
@@ -58,7 +42,6 @@ class MyTrips extends React.Component{
   }
 
   addPhoto = async ( public_id, url ) => {
-
     let body = {
       public_id: public_id,
       trip_id:this.state.tripId,
@@ -66,11 +49,6 @@ class MyTrips extends React.Component{
       trip_entry_id:this.state.tripEntryId,
       url:url
     }
-    // await axios.post(`${localhost}/pics`, body).then(response => {
-    //
-    // }).catch((err) => {
-    //   console.error();
-    // })
     this.setState({ photoId: [...this.state.photoId, public_id] })
   }
 

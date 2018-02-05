@@ -21,7 +21,6 @@ class FellowTravelers extends React.Component{
   }
 
   filter = async () => {
-    console.log('tripEntries', this.state.tripEntries);
     let tripEntries = this.state.tripEntries
     let country = this.state.country
     let toggleShow = tripEntries.map((entry)=> {

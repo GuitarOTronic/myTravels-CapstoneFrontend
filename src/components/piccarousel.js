@@ -1,17 +1,13 @@
 import React from 'react'
-
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import Pic from './pic.js'
 const PicCarousel = ({ public_ids, forFellowEntries, toggleCarousel, showAllTripPics, toggleShowAllTripPics }) => {
 
-  console.log('dat pics >>>>>', public_ids);
 
     return (
       <div style={{display:'block'}}>
-        {/* <button className='carouselX' onClick={this.props.toggleTripForm}>X</button> */}
-
        { forFellowEntries ?
       <div className='carouselContainer'>
         <CarouselProvider

@@ -29,7 +29,6 @@ class EntryReactModal extends React.Component{
 
 
   getTripId(){
-    console.log('getTripId()');
     return this.props.tripId
   }
 
@@ -41,11 +40,8 @@ class EntryReactModal extends React.Component{
      window.tripId = this.props.tripId
     if(window.$.fn.cloudinary_fileupload !== undefined) {
       window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-          console.log('data ', data);
           let public_id = data.result.public_id
           let url = data.result.url
-
-
             let body = {
               public_id: public_id,
               trip_id:window.tripId,
@@ -53,16 +49,10 @@ class EntryReactModal extends React.Component{
               trip_entry_id:window.tripEntryId,
               url:url
             }
-            console.log('body', body);
            axios.post(`${localhost}/pics`, body).then(response => {
-             console.log(response);
             }).catch((err) => {
               console.error();
             })
-
-            // this.setState({ photoId: [...this.state.photoId, public_id] })
-
-
         })
         .bind('cloudinaryprogress', function(e, data) {
           window.$('.progress_bar').css('width',
@@ -72,7 +62,6 @@ class EntryReactModal extends React.Component{
   }
 
   render(){
-      console.log('modal is mounted', this.state.isOpen, 'tripEntryId', this.props.tripEntryId);
     return (
       <ReactModal
         isOpen={this.props.isOpen}

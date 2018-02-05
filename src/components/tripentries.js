@@ -30,12 +30,8 @@ class TripEntries extends React.Component {
       this.setState({deleted:true})
     })
   }
-  // deleteTripEntry = () => {
-  //   this.props.deleteTripEntry(this.props.id)
-  // }
 
   toggleDeleteConfirm = ()=> {
-    console.log(this.props.id);
     this.setState({isOpened:!this.state.isOpened})
   }
 

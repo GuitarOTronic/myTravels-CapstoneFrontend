@@ -45,20 +45,9 @@ class TripsContainer extends React.Component {
     this.props.toggleCarousel()
     this.getTripEntryPics(id)
   }
-// = ({trips, memory, name, setTripDetails, tripId, tripName, addPhoto, tripEntries, photoId}) => {
-
-//     $('.thumbnails').append($.cloudinary.image(data.result.public_id,
-//       { format: 'jpg', width: 150, height: 100,
-//         crop: 'thumb', gravity: 'face', effect: 'saturation:50' } ))
-//       })
-//       .bind('cloudinaryprogress', function(e, data) {
-//   $('.progress_bar').css('width',
-//     Math.round((data.loaded * 100.0) / data.total) + '%');
-
 
 
   render(){
-    console.log("TripsContainer state", this.props );
     return(
       <main>
         <div className='nameDiv'>

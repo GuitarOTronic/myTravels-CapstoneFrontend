@@ -7,7 +7,6 @@ import Login from './components/login'
 import FellowTravelers from './components/fellowtravelers.js'
 import Navigation from './components/shared/nav.js'
 import Signup from './components/signup'
-// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
 
@@ -32,7 +31,6 @@ window.AddTokenToHeader = function () {
 window.$.cloudinary.config({ cloud_name: 'mytravels', secure: true });
 // if(window.$.fn.cloudinary_fileupload !== undefined) {
 //   window.$("input.cloudinary-fileupload[type=file]").cloudinary_fileupload().bind('cloudinarydone', function(e, data) {
-//       console.log('data ', data);
 //       this.props.addPhoto(data.result.public_id, data.result.url)
 //     })
 //   }
@@ -59,13 +57,11 @@ class App extends Component {
     window.AddTokenToHeader()
     await axios.post(`${localhost}/users/pastuser`, token).then(result => {
       let {name, email, id} = result.data.payload
-
       this.setState({name, email, id})
     })
   }
 
   async handleCreateNewTrip(title, country, region, userId, history){
-    console.log('handle createNewTrip =>', history);
     const user_id = this.state.id
     const body = {title, country, region, user_id}
     await axios.post(`${localhost}/trips`, body)
@@ -133,12 +129,10 @@ class App extends Component {
   toggleShowAllTripPics = async () => {
 
     await axios.get(`${localhost}/pics/trip/${this.state.tripId}`).then(ids => {
-      console.log('ids>>>>>>>>>>>>', ids.data);
       let tripPicIdArr=[]
       ids.data.forEach(id=> {
         tripPicIdArr.push(id)
       })
-      console.log('tripPicIdArr>>>>>>>>>>>', tripPicIdArr);
         this.setState({
           showAllTripPics:!this.state.showAllTripPics,
           tripPicIds:tripPicIdArr

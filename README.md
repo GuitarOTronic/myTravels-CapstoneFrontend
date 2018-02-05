@@ -4,18 +4,18 @@
 [Live site](http://mytravels.surge.sh/)   
 
 [<img src="https://imgur.com/rIjikOZ.png"/>](https://www.youtube.com/watch?time_continue=2&v=dX2STSA0ZW8)
-## ABOUT  
+## About
 myTravels is my capstone project for Galvanize's Wed Development Immersive. The idea behind myTravels is to give users a travel oriented social platform to share photos, comments, and travel notes and connect them to fellow travelers. 
 
 
-##  GOING FOWARD
+##  Going forward
 - Make it mobile friendly
 - Add a chat feature
 - Add a tag feature to improve filtering 
 
 
 
-## BUILT WITH
+## Built with
 -HTML5, CSS3  \
 -JavaScript  \
 -React.js  \

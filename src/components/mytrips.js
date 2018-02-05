@@ -58,7 +58,7 @@ class MyTrips extends React.Component{
   }
 
   addPhoto = async ( public_id, url ) => {
-    console.log('addPhoto',this.state.tripEntryId);
+
     let body = {
       public_id: public_id,
       trip_id:this.state.tripId,
@@ -66,11 +66,11 @@ class MyTrips extends React.Component{
       trip_entry_id:this.state.tripEntryId,
       url:url
     }
-    await axios.post(`${localhost}/pics`, body).then(response => {
-
-    }).catch((err) => {
-      console.error();
-    })
+    // await axios.post(`${localhost}/pics`, body).then(response => {
+    //
+    // }).catch((err) => {
+    //   console.error();
+    // })
     this.setState({ photoId: [...this.state.photoId, public_id] })
   }
 
@@ -95,8 +95,6 @@ class MyTrips extends React.Component{
   //get trips then store them in state
   getTrips = async () => {
     await axios.get(`${localhost}/trips/${this.props.state.id}`).then(response => {
-
-      console.log('getTrips:>>>', response.data);
       let trips=[]
       response.data.trips.map((trip) => {
         if (trip !== null){
@@ -104,7 +102,6 @@ class MyTrips extends React.Component{
         }
       })
       // adding be routes to include public_id for trip pics
-      console.log(trips);
       this.setState({
           showNewTripForm:false,
           trips:trips,
@@ -113,12 +110,12 @@ class MyTrips extends React.Component{
       console.log(err);
     })
   }
+
   handleChange= (date) =>{
       this.setState({
         startDate: date
       });
     }
-
 
   setTripDetails = async ( id, name ) => {
     await axios.get(`${localhost}/tripEntries/${id||this.props.tripId}`).then(response => {

@@ -63,7 +63,8 @@ class EntryReactModal extends React.Component{
             // this.setState({ photoId: [...this.state.photoId, public_id] })
 
 
-        }).bind('cloudinaryprogress', function(e, data) {
+        })
+        .bind('cloudinaryprogress', function(e, data) {
           window.$('.progress_bar').css('width',
             Math.round((data.loaded * 100.0) / data.total) + '%');
           })

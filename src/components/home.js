@@ -20,10 +20,7 @@ class Home extends React.Component{
   }
    getHomePhotos = () => {
     axios.get(`${localhost}/pics`).then( response => {
-      console.log('dinkle',response.data);
-      // let shuffledPix = response.data.
       let shuffledPix=_.shuffle(response.data)
-
       this.setState({picArr:shuffledPix})
     })
   }

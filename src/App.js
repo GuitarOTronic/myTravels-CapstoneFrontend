@@ -133,10 +133,10 @@ class App extends Component {
   toggleShowAllTripPics = async () => {
 
     await axios.get(`${localhost}/pics/trip/${this.state.tripId}`).then(ids => {
-      console.log('ids', ids.data.response);
+      console.log('ids>>>>>>>>>>>>', ids.data);
       let tripPicIdArr=[]
-      ids.data.response.forEach(id=> {
-        tripPicIdArr.push(id.public_id)
+      ids.data.forEach(id=> {
+        tripPicIdArr.push(id)
       })
       console.log('tripPicIdArr>>>>>>>>>>>', tripPicIdArr);
         this.setState({

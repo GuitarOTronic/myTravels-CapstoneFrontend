@@ -2,7 +2,6 @@ import React from 'react'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 const HomePhotos = ({ pic }) => {
-  console.log(pic);
 
   return (
     <div >
